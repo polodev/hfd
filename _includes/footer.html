@@ -3,6 +3,9 @@
     <script src="{{ "assets/bootstrap/jquery-3.3.1.min.js" }}"></script>
     <script src="{{ "assets/bootstrap/popper.min.js" | relative_url }}"></script>
     <script src="{{ "assets/bootstrap/bootstrap.min.js" | relative_url }}"></script>
-    <script src="{{ "assets/js/index.js" | relative_url }}"></script>
+    <script src="{{ "assets/js/other.js" | relative_url }}"></script>
+    {% if include.vue == 'true' %}
+      <script src="{{ "assets/js/index.js" | relative_url }}"></script>
+    {% endif %}
   </body>
 </html>
