@@ -1,5 +1,36 @@
 ---
 ---
+
 body {
-  font-size: 25px;
+  margin: 0 2.5rem 0 2.5rem;
+}
+
+/**
+ * Header
+ */
+.top_area {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.logo {
+  img {
+    width: 250px;
+  }
+}
+
+.top_social {
+  position: relative;
+}
+.social {
+  position: absolute;
+  top: 0;
+  right: 0;
+  a {
+    color: #858585;
+    text-decoration: none;
+    &:hover {
+      color: #ca3046;
+    }
+  }
 }

@@ -68,7 +68,9 @@
 /***/ 1:
 /***/ (function(module, exports) {
 
-console.log('hello world');
+$(document).ready(function () {
+  $(".owl-carousel").owlCarousel();
+});
 
 /***/ }),
 
