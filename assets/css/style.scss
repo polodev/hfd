@@ -3,12 +3,13 @@
 
 body {
   margin: 0 2.5rem 0 2.5rem;
+  font-size: 17px;
 }
 
 /**
  * Header
  */
-.top_area {
+.top__area {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
@@ -19,13 +20,17 @@ body {
   }
 }
 
-.top_social {
+.top__social {
   position: relative;
 }
 .social {
+  font-size: 1.5rem;
   position: absolute;
   top: 0;
   right: 0;
+  i {
+    font-size: 1.75rem;
+  }
   a {
     color: #858585;
     text-decoration: none;
@@ -34,3 +39,57 @@ body {
     }
   }
 }
+
+
+/**
+ * Home page slider 
+ */
+a.item {
+  text-decoration: none;
+}
+.item__inner {
+  & > div {
+    height: 400px;
+    position: relative;
+  }
+  h1 {
+    color: #315084;
+    text-decoration: none;
+  }
+}
+.item__inner {
+  .the_dentist {
+    h1 {
+      position: absolute;
+      text-align: center;
+      left: 200px;
+      top: 150px;
+    }
+    background:  url("../images/homepage/dentist.png") no-repeat 300px 0px;
+    background-size: contain;
+  }
+  .self_evaluation {
+    h1 {
+
+    }
+  }
+  .dental_knowledge {
+    h1 {
+
+    }
+  }
+  .dental_hygiene {
+    h1 {
+
+    }
+  }
+  .our_treatment {
+    h1 {
+
+    }
+  }
+}
+
+
+
+
