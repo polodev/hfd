@@ -53,42 +53,58 @@ a.item {
     position: relative;
   }
   h1 {
-    color: #315084;
+    // color: #315084;
+    color: #646464;
     text-decoration: none;
   }
 }
 .item__inner {
+  h1.left {
+    position: absolute;
+    text-align: center;
+    left: 200px;
+    top: 110px;
+  }
+  h1.right {
+    position: absolute;
+    text-align: center;
+    right: 200px;
+    top: 110px;
+  }
   .the_dentist {
-    h1 {
-      position: absolute;
-      text-align: center;
-      left: 200px;
-      top: 150px;
-    }
     background:  url("../images/homepage/dentist.png") no-repeat 300px 0px;
     background-size: contain;
   }
   .self_evaluation {
-    h1 {
-
-    }
+    background: url(../images/homepage/self_evaluation.png) no-repeat 60px -100px;
+    background-size: 70%;
   }
   .dental_knowledge {
-    h1 {
-
-    }
+    background: url(../images/homepage/dental_knowledge.png) no-repeat center center;
+    background-size: cover;
   }
   .dental_hygiene {
-    h1 {
-
-    }
+    background: url(../images/homepage/hygiene.png) no-repeat 0px -80px;
+    background-size: 80%;
   }
   .our_treatment {
-    h1 {
-
-    }
+    background: url(../images/homepage/treatment.png) no-repeat 0 -100px;
+    background-size: 70%;
   }
 }
+/**
+ * owl carousel overridden 
+ */
+ .owl-theme .owl-dots .owl-dot span {
+  background: #ca4f5f;
+ }
+ .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+  background: #d2233e;
+ }
+ .owl-theme .owl-nav.disabled+.owl-dots {
+    margin-top: -36px;
+    position: relative;
+  }
 
 
 
