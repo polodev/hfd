@@ -1,6 +1,7 @@
 ---
 ---
 
+$fz: 1rem;
 $menu_header_font: 1rem;
 $menu_paragraph_font: .75em;
 $social_font: 1.5em;
@@ -14,6 +15,7 @@ body {
 }
 .bm {
   margin-bottom: 400px;
+
 }
 * {
   box-sizing: border-box;
@@ -35,12 +37,18 @@ body {
 
 .top__social {
   position: relative;
+  text-align: center;
 }
 .social {
   font-size: $social_font;
   position: absolute;
   top: 0;
   right: 0;
+  @media screen and (max-width: 800px) {
+    position: static;
+    font-size: $fz;
+    margin-bottom: 10px;
+  }
   i {
     font-size: $social_i_font;
   }
@@ -56,7 +64,7 @@ body {
 /**
  * Footer
  */
- footer.desktop {
+ footer.home {
   text-align: center;
   position: fixed;
   height: 200px;
@@ -68,14 +76,30 @@ body {
   // background: url('../images/icons/home_page_footer.png') no-repeat center center;
   background: $nav_bg;
   background-size: 300%;
+  z-index: 2;
+  @media screen and (max-width: 800px) {
+    height: 80px;
+  }
   nav {
     display: flex;
     padding: 0 40px;
+    @media screen and (max-width: 800px) {
+      padding: 0 10px;
+      overflow: auto;
+      white-space: nowrap;
+      display: inline-block;
+
+    }
     a {
       margin-right: 10px;
       color: white;
       text-decoration: none;
       position: relative;
+      @media screen and (max-width: 800px) {
+        display: inline-block;
+        margin-right: 10px;
+        padding-right: 10px;
+      }
       &:after {
         content: "";
         width: 2px;
@@ -84,6 +108,9 @@ body {
         position: absolute;
         top: 40%;
         right: -5px;
+        @media screen and (max-width: 800px) {
+          height: 20px;
+        }
       }
       &:last-child:after {
         height: 0;
@@ -91,15 +118,24 @@ body {
       }
       h2 {
         font-size: $menu_header_font;
+        @media screen and (max-width: 800px) {
+          font-size: $menu_paragraph_font;
+        }
       }
       p {
         font-size: $menu_paragraph_font;
+        @media screen and (max-width: 800px) {
+          display: none;
+        }
       }
       &:hover {
         color: white;
       }
       img {
         width: 50px;
+        @media screen and (max-width: 800px) {
+          width: 40px;
+        }
       }
 
     }
@@ -117,6 +153,12 @@ a.item {
   & > div {
     height: 400px;
     position: relative;
+    @media screen and (max-width: 800px) {
+      height: 350px;
+    }
+    @media screen and (max-width: 480px) {
+      height: 300px;
+    }
   }
   h1 {
     // color: #315084;
@@ -137,25 +179,66 @@ a.item {
     right: 200px;
     top: 110px;
   }
+  h1.left, h1.right {
+    @media screen and (max-width: 800px) {
+      position: static;
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 480px) {
+      position: static;
+      font-size: 1rem;
+    }
+  }
   .the_dentist {
-    background:  url("../images/homepage/dentist.png") no-repeat 300px 0px;
+    background:  url("../images/homepage/dentist.png") no-repeat;
+    background-position: 300px 0px;
     background-size: contain;
+    @media screen and (max-width: 800px) {
+      background-position: -30px 40px;
+      background-size: 150%;
+    }
+    @media screen and (max-width: 480px) {
+      background-position: -30px 40px;
+      background-size: 130%;
+    }
   }
   .self_evaluation {
-    background: url(../images/homepage/self_evaluation.png) no-repeat 60px -100px;
+    background: url(../images/homepage/self_evaluation.png) no-repeat;
+    background-position: 60px -100px;
     background-size: 70%;
+    @media screen and (max-width: 800px) {
+      background-position: center;
+      background-size: 100%;
+    }
   }
   .dental_knowledge {
-    background: url(../images/homepage/dental_knowledge.png) no-repeat center center;
+    background: url(../images/homepage/dental_knowledge.png) no-repeat;
+    background-position: center center;
     background-size: cover;
+    @media screen and (max-width: 800px) {
+      background-position: -90px center;
+      background-size: 100%;
+    }
+    @media screen and (max-width: 480px) {
+      background-position: -150px center;
+      background-size: 150%;
+    }
   }
   .dental_hygiene {
     background: url(../images/homepage/hygiene.png) no-repeat 0px -80px;
+    background-position: 0px -80px;
     background-size: 80%;
+    @media screen and (max-width: 800px) {
+      background-position: center;
+    }
   }
   .our_treatment {
-    background: url(../images/homepage/treatment.png) no-repeat 0 -100px;
+    background: url(../images/homepage/treatment.png) no-repeat;
+    background-position: 0 -100px;
     background-size: 70%;
+    @media screen and (max-width: 800px) {
+      background-position: center;
+    }
   }
 }
 /**
