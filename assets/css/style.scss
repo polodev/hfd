@@ -110,6 +110,7 @@ body {
         right: -5px;
         @media screen and (max-width: 800px) {
           height: 20px;
+          top: 30%;
         }
       }
       &:last-child:after {
@@ -220,7 +221,7 @@ a.item {
       background-size: 100%;
     }
     @media screen and (max-width: 480px) {
-      background-position: -150px center;
+      background-position: -140px center;
       background-size: 150%;
     }
   }
