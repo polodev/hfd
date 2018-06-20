@@ -1,1 +1,4 @@
-src="{{site.url}}{{site.baseurl}}/assets/images/students/{{image}}.jpg"
+---
+layout: otherpage
+---
+About us

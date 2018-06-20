@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="{{ "assets/css/owl.carousel.min.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "assets/css/owl.theme.default.min.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
+  {% if include.page != 'home' %}
+    <link rel="stylesheet" href="{{ "assets/css/other_page.css" | relative_url }}">
+  {% endif %}
   </head>
   <body>
   
