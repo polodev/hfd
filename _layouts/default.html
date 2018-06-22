@@ -1,5 +1,5 @@
-{% include header.html page='home'  %}
+{% include header.html page=page.page title=page.title %}
 <div id='app'>
     {{content}}
 </div>
-{% include footer.html vue='false' %}
+{% include footer.html vue='false' page=page.page %}

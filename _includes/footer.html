@@ -1,36 +1,36 @@
     <footer role="footer">
         <nav class="footer_nav" role="navigation">
-            <a href='{{site.url}}{{site.baseurl}}/'>
+            <a {% if page.page=='home' %}class='active'{% endif %} href='{{site.url}}{{site.baseurl}}/'>
                 <img src="{{'assets/images/icons/home_icon.png' | relative_url}}" alt=''/>
                 <h2>Home</h2>
                 <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
             </a>
-            <a href='{{site.url}}{{site.baseurl}}/dentist'>
+            <a {% if page.page=='dentists' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/dentists'>
                 <img src="{{'assets/images/icons/the_dental_icon.png' | relative_url}}" alt=''/>
                 <h2>The Dentists</h2>
                 <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
             </a>
-            <a href='{{site.url}}{{site.baseurl}}/treatments'>
+            <a {% if page.page=='treatments' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/treatments'>
                 <img src="{{'assets/images/icons/our_treatment_icon.png' | relative_url}}" alt=''/>
                 <h2>Our treatments</h2>
                 <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
             </a>
-            <a href='{{site.url}}{{site.baseurl}}/knowledge'>
+            <a {% if page.page=='knowledge' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/knowledge'>
                 <img src="{{'assets/images/icons/dental_knowledge_icon.png' | relative_url}}" alt=''/>
                 <h2>Dental knowledge</h2>
                 <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
             </a>
-            <a href='{{site.url}}{{site.baseurl}}/evaluation'>
+            <a {% if page.page=='evaluation' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/evaluation'>
                 <img src="{{'assets/images/icons/self_evaluation_icon.png' | relative_url}}" alt=''/>
                 <h2>Self Evaluation</h2>
                 <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
             </a>
-            <a href='{{site.url}}{{site.baseurl}}/appoinment'>
-                <img src="{{'assets/images/icons/make_an_appoinment_icon.png' | relative_url}}" alt=''/>
+            <a {% if page.page=='appointment' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/appointment'>
+                <img src="{{'assets/images/icons/make_an_appointment_icon.png' | relative_url}}" alt=''/>
                 <h2>Make an Appoinment</h2>
                 <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
             </a>
-            <a href='{{site.url}}{{site.baseurl}}/location'>
+            <a {% if page.page=='location' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/location'>
                 <img src="{{'assets/images/icons/location_icon.png' | relative_url}}" alt=''/>
                 <h2>Contact and location</h2>
                 <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>

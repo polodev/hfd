@@ -1,17 +1,46 @@
 ---
 ---
 
+@font-face {
+    font-family: NuevaStdBold;
+    src: url("fonts/NuevaStd-Bold.otf");
+}
+@font-face {
+    font-family: NuevaStd;
+    src: url("fonts/NuevaStd.ttf");
+}
+@font-face {
+    font-family: NuevaStdBoldCond;
+    src: url("fonts/NuevaStd-BoldCond.otf");
+}
+
 $fz: 1rem;
+$hfd_primary_color: #c94d5d;
 $menu_header_font: 1rem;
 $menu_paragraph_font: .75em;
 $social_font: 1.5em;
 $social_i_font: 1.75em;
 $nav_bg: #c94e5d;
 
+/**
+ * global style
+ */
+ .btn-hfd {
+    color: #fff;
+    background-color: $hfd_primary_color;
+    border-color: darken($hfd_primary_color, 5%);
+    &:hover, &:active {
+      background-color: darken($hfd_primary_color, 10%);
+      border-color: darken($hfd_primary_color, 15%);
+      color: #fff;
+    }
+ }
+
 body {
   margin: 0 2.5rem 0 2.5rem;
   margin-bottom: 200px;
   font-size: 16px;
+  font-family: NuevaStdBold;
 }
 .bm {
   margin-bottom: 400px;
@@ -139,6 +168,15 @@ body {
         }
       }
 
+      &.active {
+        img {
+          background: darken($hfd_primary_color, 2%);
+        }
+        h2 {
+          color: lightpink;
+        }
+      }
+
     }
   }
  }
@@ -257,6 +295,18 @@ a.item {
   }
 
 
-
+/**
+ * dentist page
+ */
+ .dentist {
+  h2 {
+    color: $hfd_primary_color;
+  }
+  img {
+    height: 400px;
+    margin: 10px auto;
+    display: block;
+  }
+ }
 
 
