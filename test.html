@@ -1,1 +1,18 @@
-<img src='assets/images/icons/home_icon.png' alt=''/>
+---
+layout: default
+title: test
+page: test
+---
+
+{%assign knowledge = site.knowledge | sort: 'number' %}
+{% for topic in knowledge %}
+  <h1>{{topic.title}}</h1>
+  <h2>{{topic.number}}</h2>
+{% endfor %}
+
+<img src='assets/images/knowledge/dental_implements.jpg' alt=''/>
+<img src='assets/images/knowledge/dental_implements_icon.jpg' alt=''/>
+<img src='assets/images/knowledge/cosmatic_dentistry.jpg' alt=''/>
+<img src='assets/images/knowledge/cosmetic_dentistry_icon.png' alt=''/>
+
+

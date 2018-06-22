@@ -16,6 +16,7 @@
 
 $fz: 1rem;
 $hfd_primary_color: #c94d5d;
+$hfd_font_color: #616060;
 $menu_header_font: 1rem;
 $menu_paragraph_font: .75em;
 $social_font: 1.5em;
@@ -24,6 +25,12 @@ $nav_bg: #c94e5d;
 
 .hfd_color {
   color: $hfd_primary_color;
+  a &{
+    color: $hfd_primary_color;
+    &:hover {
+      color: darken($hfd_primary_color, 5%);
+    }
+  }
 }
 
 .hfd_bg_color {
@@ -47,7 +54,7 @@ $nav_bg: #c94e5d;
 body {
   margin: 0 2.5rem 0 2.5rem;
   margin-bottom: 200px;
-  color: #616060;
+  color: $hfd_font_color;
   font-size: 18px;
   font-family: NuevaStdBold;
 }
@@ -340,3 +347,50 @@ a.item {
     list-style-image: url('../images/treatments/dental_li.png');
   }
 }
+
+/**
+ * Dental knowledge
+ */
+ #knowledge {
+  a.headline {
+    color: $hfd_font_color;
+    text-decoration: none;
+    &:hover {
+      color: darken($hfd_font_color, 2%);
+      text-decoration: none;
+    }
+  }
+  .knowledge_list {
+    img.icon {
+      height: 50px;
+    }
+    img.main {
+      width: 80%;
+      @media screen and (max-width: 480px) {
+        width: 80%;
+      }
+    }
+    a {
+      color: $hfd_font_color;
+      text-decoration: none;
+      &:hover {
+        color: $hfd_font_color;
+      }
+    }
+  }
+
+ }
+
+ /**
+  * knowledge layout and collection 
+  */
+ #knowledge_layout {
+  a.headline {
+    color: $hfd_font_color;
+    text-decoration: none;
+    &:hover {
+      color: darken($hfd_font_color, 2%);
+      text-decoration: none;
+    }
+  }
+ }

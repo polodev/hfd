@@ -3,4 +3,40 @@ layout: otherpage
 page: knowledge
 title: Knowledge
 ---
-About us
+<div id='knowledge'>
+  <div class='container'>
+    <div class='text-center'>
+      <a class="headline" href='{{site.url}}{{site.baseurl}}/knowledge'>
+        <img class="hfd_bg_color" src="{{'assets/images/icons/dental_knowledge_icon.png' | relative_url}}" alt=''/>
+        <h1 class="mt-2">Dental Knowledge</h1>
+      </a>
+      <h2 class='hfd_color'>Frequently Asked Questions</h2>
+    </div>
+    <section class="mt-3">
+      <h2 class="hfd_color">What tooth paste should I use?</h2>
+      <p>The most important ingredient to look for when choosing toothpaste is fluoride. Bacteria in your mouth feed on sugars and starches that remain on your teeth after eating. Fluoride helps protect your teeth from the acid that is released when this happens. It does this in two ways. First, fluoride makes your tooth enamel stronger and less likely to suffer acid damage. Second, it can reverse the early stages of acid damage by solidifying areas that have started to decay. </p>
+      <h2 class="hfd_color">What is plaque and why is it harmful?</h2>
+      <p> Plaque develops when foods containing carbohydrates (sugars and starches), milk, soft drinks, raisins, cakes, or candy are frequently left on the teeth. Bacteria that live in the mouth thrive on these foods, producing acids as a result. Over a period of time, these acids destroy tooth enamel, resulting in tooth decay. Plaque can also develop on the tooth roots under the gum and cause breakdown of the bone supporting the tooth. How often should I floss? </p>
+    </section>
+
+    <section class="knowledge_list">
+      <div class='row'>
+        {% assign sorted = site.knowledge | sort: 'number' %}
+        {%assign knowledge = site.knowledge | sort: 'number' %}
+        {% for topic in knowledge %}
+          <a href="{{site.url}}{{site.baseurl}}/{{topic.url}}" class='col-md-4 text-center mb-4'>
+            <img class="icon mb-3" src='{{site.url}}{{site.baseurl}}/{{topic.icon}}' alt='' class='icon'/>
+            <p class="hfd_color mb-0">{{topic.title}}</p>
+            <img class="main" src='{{site.url}}{{site.baseurl}}/{{topic.image}}' alt=''/>
+          </a>
+          <!-- /.col-md-4 -->
+        {% endfor %}
+      </div>
+      <!-- /.row -->
+    </section>
+
+
+
+  </div>
+  <!-- /.container --></div>
+<!-- /#knowledge -->
