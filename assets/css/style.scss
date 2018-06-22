@@ -22,6 +22,14 @@ $social_font: 1.5em;
 $social_i_font: 1.75em;
 $nav_bg: #c94e5d;
 
+.hfd_color {
+  color: $hfd_primary_color;
+}
+
+.hfd_bg_color {
+  background: $hfd_primary_color;
+}
+
 /**
  * global style
  */
@@ -39,7 +47,8 @@ $nav_bg: #c94e5d;
 body {
   margin: 0 2.5rem 0 2.5rem;
   margin-bottom: 200px;
-  font-size: 16px;
+  color: #616060;
+  font-size: 18px;
   font-family: NuevaStdBold;
 }
 .bm {
@@ -210,7 +219,7 @@ a.item {
     position: absolute;
     text-align: center;
     left: 200px;
-    top: 110px;
+    top: 100px;
   }
   h1.right {
     position: absolute;
@@ -298,7 +307,7 @@ a.item {
 /**
  * dentist page
  */
- .dentist {
+ #dentist {
   h2 {
     color: $hfd_primary_color;
   }
@@ -309,4 +318,25 @@ a.item {
   }
  }
 
+/**
+ * Treatments page
+ */
 
+#treatments {
+  img {
+    width: 50%;
+    @media screen and (max-width: 800px) {
+      width: 60%;
+    }
+    margin: 1em 0;
+    &.icon {
+      width: 70px;
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    list-style-image: url('../images/treatments/dental_li.png');
+  }
+}
