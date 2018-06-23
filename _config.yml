@@ -4,6 +4,7 @@ title: "Haris Family Dentistry"
 permalink: /:title/
 collections:
   knowledge:
-    permalink: /knowledge/:title/
+    output: true
+    permalink: /:collection/:title/
     published: true
     page: knowledge

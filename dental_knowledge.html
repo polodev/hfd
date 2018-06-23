@@ -6,7 +6,7 @@ title: Knowledge
 <div id='knowledge'>
   <div class='container'>
     <div class='text-center'>
-      <a class="headline" href='{{site.url}}{{site.baseurl}}/knowledge'>
+      <a class="headline" href='{{site.url}}{{site.baseurl}}/dental_knowledge'>
         <img class="hfd_bg_color" src="{{'assets/images/icons/dental_knowledge_icon.png' | relative_url}}" alt=''/>
         <h1 class="mt-2">Dental Knowledge</h1>
       </a>
@@ -24,7 +24,7 @@ title: Knowledge
         {% assign sorted = site.knowledge | sort: 'number' %}
         {%assign knowledge = site.knowledge | sort: 'number' %}
         {% for topic in knowledge %}
-          <a href="{{site.url}}{{site.baseurl}}/{{topic.url}}" class='col-md-4 text-center mb-4'>
+          <a href="{{site.url}}{{site.baseurl}}{{topic.url}}" class='col-md-4 text-center mb-4'>
             <img class="icon mb-3" src='{{site.url}}{{site.baseurl}}/{{topic.icon}}' alt='' class='icon'/>
             <p class="hfd_color mb-0">{{topic.title}}</p>
             <img class="main" src='{{site.url}}{{site.baseurl}}/{{topic.image}}' alt=''/>

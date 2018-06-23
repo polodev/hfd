@@ -18,7 +18,8 @@ write following stuff in `_config.yml page`
 ~~~yml
 collections:
   knowledge:
-    permalink: /knowledge/:title/
+    output: true
+    permalink: /:collection/:title/
     published: true
     page: knowledge
 ~~~    
