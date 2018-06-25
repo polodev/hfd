@@ -55,7 +55,7 @@ $nav_bg: #c94e5d;
   color: $hfd_primary_color;
   background-color: transparent;
   &:focus {
-    box-shadow: 0 0 0 0.1rem rgba(201, 77, 93, .7);
+    box-shadow: 0 0 0 0.1rem rgba(201, 77, 93, .4);
   }
  }
 
@@ -64,6 +64,9 @@ body {
   margin-bottom: 200px;
   color: $hfd_font_color;
   font-size: 18px;
+  font-family: NuevaStd;
+}
+h1, h2, h3, h4, h5{
   font-family: NuevaStdBold;
 }
 .bm {
@@ -374,6 +377,7 @@ a.item {
   img.main {
     width: 80%;
     max-width: 400px;
+    margin-bottom: 40px;
     @media screen and (max-width: 480px) {
       width: 80%;
     }
@@ -384,9 +388,6 @@ a.item {
     &:hover {
       color: $hfd_font_color;
     }
-  }
-  .knowledge_list {
-    margin-bottom: 3em;
   }
 
  }
