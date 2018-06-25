@@ -1,7 +1,7 @@
 ---
 layout: otherpage
 ---
-<div id='knowledge_layout'>
+<div id='knowledge'>
   <div class='container'>
       <div class='text-center'>
         <a href='{{site.url}}{{site.baseurl}}/dental_knowledge'>
@@ -9,8 +9,10 @@ layout: otherpage
           <h1 class="mt-2">Dental Knowledge</h1>
         </a>
         <h2 class='hfd_color'>Frequently Asked Questions</h2>
-      </div>
-      
+      <img class="icon mb-3" src='{{site.url}}{{site.baseurl}}/{{page.icon}}' alt='' class='icon'/>
+      <p class="hfd_color mb-0">{{page.title}}</p>
+      <img class="main single" src='{{site.url}}{{site.baseurl}}/{{page.image}}' alt=''/>
+    </div>
   </div>
 <!-- /.container -->
 </div>

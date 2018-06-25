@@ -50,6 +50,14 @@ $nav_bg: #c94e5d;
       color: #fff;
     }
  }
+ .btn-hfd-link {
+  font-weight: 400;
+  color: $hfd_primary_color;
+  background-color: transparent;
+  &:focus {
+    box-shadow: 0 0 0 0.1rem rgba(201, 77, 93, .7);
+  }
+ }
 
 body {
   margin: 0 2.5rem 0 2.5rem;
@@ -360,23 +368,25 @@ a.item {
       text-decoration: none;
     }
   }
-  .knowledge_list {
-    img.icon {
-      height: 50px;
-    }
-    img.main {
+  img.icon {
+    height: 50px;
+  }
+  img.main {
+    width: 80%;
+    max-width: 400px;
+    @media screen and (max-width: 480px) {
       width: 80%;
-      @media screen and (max-width: 480px) {
-        width: 80%;
-      }
     }
-    a {
+  }
+  a {
+    color: $hfd_font_color;
+    text-decoration: none;
+    &:hover {
       color: $hfd_font_color;
-      text-decoration: none;
-      &:hover {
-        color: $hfd_font_color;
-      }
     }
+  }
+  .knowledge_list {
+    margin-bottom: 3em;
   }
 
  }
