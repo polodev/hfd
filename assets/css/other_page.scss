@@ -6,6 +6,10 @@ body {
 footer {
   justify-content: center;
   height: 80px;
+  @media screen and (min-width: 800px) and (max-width: 1199px) {
+    height: 110px;
+  }
+
   nav {
     a {
       margin-right: 20px;
