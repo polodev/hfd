@@ -1,13 +1,11 @@
 import Vue from 'vue';
-
+import store from './store'
 require('./other');
 
-Vue.component('Test', require('./components/Test.vue'))
+Vue.component('EvaluationFirst', require('./components/EvaluationFirst.vue'))
 var app = new Vue({
   el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
+  store,
 })
 
 // alert('hello world')

@@ -452,3 +452,20 @@ a.item {
     border-radius: 15px;
   }
  }
+
+ /**
+  * Evaluations
+  */
+  #evaluation {
+    h2.page-header {
+      margin-bottom: 80px;
+    }
+    img.main {
+      max-width: 200px;
+      margin-right: 50px;
+      @media screen and (max-width: 800px) {
+        margin-bottom: 30px;
+        margin-right: 0;
+      }
+    }
+  }

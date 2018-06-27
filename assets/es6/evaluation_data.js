@@ -359,8 +359,6 @@ const discomfort = {
 
 
 
-const all = {
-  smile, gum_bleeding, bad_breath, tooth_sensitivity, yellow_teeth, pain, discomfort
-}
+const all = [smile, gum_bleeding, bad_breath, tooth_sensitivity, yellow_teeth, pain, discomfort];
 
 export default all;
