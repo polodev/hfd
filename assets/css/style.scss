@@ -26,6 +26,11 @@ $nav_bg: #c94e5d;
 strong {
   font-family: NuevaStdBold;
 }
+.hidden800 {
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
 
 .hfd_color {
   color: $hfd_primary_color;
@@ -485,14 +490,20 @@ a.item {
    */
    #evaluation-summary {
     .evaluation-question-content {
-      margin-top: 60px;
+      margin-top: 50px;
+      @media screen and (max-width: 800px) {
+        margin-top: 20px;
+      }
     }
     button {
       cursor: pointer;
       font-family: NuevaStdBold;
     }
     .question {
-      margin-top: 40px;
+      margin-top: 30px;
+      @media screen and (max-width: 800px) {
+        margin-top: 10px;
+      }
       .prev_next {
         color: white;
         background: $hfd_primary_color;

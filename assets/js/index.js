@@ -13155,7 +13155,7 @@ var render = function() {
   return _c("div", { staticClass: "text-center evaluation-question-content" }, [
     !_vm.isSummary
       ? _c("div", { staticClass: "question-block" }, [
-          _c("h2", [_vm._v("Let's get started")]),
+          _c("h2", { staticClass: "hidden800" }, [_vm._v("Let's get started")]),
           _vm._v(" "),
           _c("div", { staticClass: "question" }, [
             _c("h4", { staticClass: "hfd_color mb-3" }, [

@@ -1,7 +1,7 @@
 <template>
 <div class="text-center evaluation-question-content">
   <div v-if="!isSummary" class="question-block">
-    <h2>Let's get started</h2>
+    <h2 class="hidden800">Let's get started</h2>
     <div class='question'>
       <h4 class="hfd_color mb-3">{{this.currentTest.title}}</h4>
       <h3 class="hfd_color">{{this.currentTest.question}}</h3>
