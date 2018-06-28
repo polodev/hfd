@@ -19,8 +19,28 @@
     </div>
     <!-- /.question -->
   </div>
-  <div v-if="isSummary" class='summary-block'>
-    <h2>summary block</h2>
+  <div v-if="isSummary" class='summary-block text-left'>
+    <h2 class="hfd_color text-center mb-4">Your Dental profile</h2>
+    <div class='row'>
+      <div v-for="test in tests" class='col-md-6'>
+        <p>
+          <span><strong>Test: - </strong> {{test.question}} <br/></span>
+          <span class="hfd_color">
+            <strong>diagnosis: </strong>{{test.diagnosis}}. <br>
+            <strong>treatment: </strong> {{test.treatment}}
+          </span>
+        </p>
+      </div>
+      <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+    <div class="text-center">
+        <h2 class="hfd_color">Interested with our Treatments?</h2>
+        <p>
+          <a :href='appointmentUrl' class="btn btn-hfd">Make an appointment now</a>
+        </p>
+    </div>
+
   </div>
   <!-- /.summary-block -->
 </div>
@@ -33,6 +53,7 @@ export default {
 
     }
   },
+  props: ['appointmentUrl'],
   computed: {
       currentTestId: {
           get() { return this.$store.state.currentTestId; },
@@ -40,8 +61,10 @@ export default {
       },
      ...mapState({
       data: state => state.data,
+      tests: state => state.tests,
       isSummary ( state ) {
-        return state.currentTestId >= this.maxId
+        // return state.currentTestId >= this.maxId
+        return state.currentTestId >= 6
       },
       currentTest (state) {
         return state.data.find(test => test.id === state.currentTestId) || {}

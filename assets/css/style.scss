@@ -23,6 +23,10 @@ $social_font: 1.5em;
 $social_i_font: 1.75em;
 $nav_bg: #c94e5d;
 
+strong {
+  font-family: NuevaStdBold;
+}
+
 .hfd_color {
   color: $hfd_primary_color;
   a &{
