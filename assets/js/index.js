@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11064,39 +11064,154 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(5).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6).setImmediate))
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__(4);
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
 
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(5);
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(10);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+
+
 
 
 __webpack_require__(1);
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Test', __webpack_require__(11));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Evaluation', __webpack_require__(19));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Test', __webpack_require__(12));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Evaluation', __webpack_require__(20));
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
-  store: __WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */]
+  store: __WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */],
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapMutations */])(['addTest', 'changeCurrentTestId']))
 });
 
 // alert('hello world')
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -11152,7 +11267,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(6);
+__webpack_require__(7);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11166,7 +11281,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11356,10 +11471,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(8)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11549,53 +11664,53 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__evaluation_data__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__evaluation_data_flat__ = __webpack_require__(11);
 
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   state: {
-    data: __WEBPACK_IMPORTED_MODULE_2__evaluation_data__["a" /* default */],
+    data: __WEBPACK_IMPORTED_MODULE_2__evaluation_data_flat__["a" /* default */],
     tests: [],
-    currentEvaluationId: 1,
-    currentQuestionsId: 1,
-    currentQuestion: []
+    currentTestId: 1
   },
   mutations: {
     addTest: function addTest(state, payload) {
-      state.push(payload);
+      var isAlreadyExists = state.tests.find(function (test) {
+        return test.id == payload.id;
+      });
+      if (isAlreadyExists) {
+        return state;
+      } else {
+        return state.tests.push(payload);
+      }
     },
-    changeCurrentEvaluationId: function changeCurrentEvaluationId(state, id) {
-      state.currentEvaluationId = id;
-    },
-    changeCurrentQuestionsId: function changeCurrentQuestionsId(state, id) {
-      state.currentQuestionsId = id;
-    },
-    changeCurrentQuestion: function changeCurrentQuestion(state, question) {
-      state.currentQuestion = question;
+    changeCurrentTestId: function changeCurrentTestId(state, newId) {
+      state.currentTestId = newId;
     }
   }
+
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (store);
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export Store */
 /* unused harmony export install */
-/* unused harmony export mapState */
-/* unused harmony export mapMutations */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapMutations; });
 /* unused harmony export mapGetters */
 /* unused harmony export mapActions */
 /* unused harmony export createNamespacedHelpers */
@@ -12533,330 +12648,327 @@ var index_esm = {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var smile = {
+var all = [{
   id: 1,
   title: "Concern with your smile",
-  questions: [{
-    id: 1,
-    question: "are your two upper front teeth too long or too wide?",
-    diagnosis: "aesthetic problem",
-    treatment: "cosmetic correction"
-  }, {
-    id: 2,
-    question: "Is there any space between your front teeth?",
-    diagnosis: "Aesthetic problem",
-    treatment: "Cosmetic correction, orthodontic treatment"
-  }, {
-    id: 3,
-    question: "Do you notice any stains on your teeth?",
-    diagnosis: "Discoloration of tooth",
-    treatment: "Polishing"
-  }, {
-    id: 4,
-    question: "In a wide smile, are any of your teeth of a different size or different color?",
-    diagnosis: "Aesthetic problem",
-    treatment: "Cosmetic correction"
-  }, {
-    id: 5,
-    question: "Do any of your front teeth 'stick out'?",
-    diagnosis: "Aesthetic problem",
-    treatment: "Cosmetic correction"
-  }, {
-    id: 6,
-    question: "Are your lower six front teeth crooked and uneven in appearance?",
-    diagnosis: "Malocclusion",
-    treatment: "Orthodontic correction"
-  }, {
-    id: 7,
-    question: "Do your crowns / fillings/ laminates look artificial or a different color than your natural teeth?",
-    diagnosis: "Aesthetic problem",
-    treatment: "Cosmetic correction"
-  }, {
-    id: 8,
-    question: "When you smile broadly, do you feel that too much of your gums show?",
-    diagnosis: "Aesthetic problem",
-    treatment: "Cosmetic correction"
-  }, {
-    id: 9,
-    question: "Do your gums curve around your teeth in any other shape than a ' half moon shape '?",
-    diagnosis: "Aesthetic problem",
-    treatment: "Cosmetic correction"
-  }, {
-    id: 10,
-    question: "Do you feel your smile appears unaesthetic for any reason?",
-    diagnosis: "Aesthetic problem",
-    treatment: "Cosmetic correction"
-  }]
-};
-
-var gum_bleeding = {
+  question: "are your two upper front teeth too long or too wide?",
+  diagnosis: "aesthetic problem",
+  treatment: "cosmetic correction"
+}, {
   id: 2,
-  title: "Gum Bleeding",
-  questions: [{
-    id: 1,
-    question: "Bleeding gums?",
-    diagnosis: "Gingivitis",
-    treatment: "Scaling"
-  }, {
-    id: 2,
-    question: "Do you feel your gums are red and swollen?",
-    diagnosis: "Gingivitis",
-    treatment: "Scaling"
-  }, {
-    id: 3,
-    question: "Do you have any sensitive, tender gums?",
-    diagnosis: "Gingivitis",
-    treatment: "Scaling"
-  }, {
-    id: 4,
-    question: "Is your breath is not fresh as it can be?",
-    diagnosis: "Gingivitis",
-    treatment: "Scaling"
-  }]
-};
-
-var bad_breath = {
+  title: "Concern with your smile",
+  question: "Is there any space between your front teeth?",
+  diagnosis: "Aesthetic problem",
+  treatment: "Cosmetic correction, orthodontic treatment"
+}, {
   id: 3,
-  title: "Bad Breath",
-  questions: [{
-    id: 1,
-    question: "Persistent bad breath?",
-    diagnosis: "Periodontitis",
-    treatment: "Scaling"
-  }, {
-    id: 2,
-    question: "Pus in the gums?",
-    diagnosis: "Gingivitis with periodontitis",
-    treatment: "Scaling"
-  }, {
-    id: 3,
-    question: "Have you suffer from diseases, DM/ sinusitis/ IBS?",
-    diagnosis: "Bad breath due to systemic disease",
-    treatment: "Consult for concern disease.    "
-  }, {
-    id: 4,
-    question: "Loose or mobile teeth?",
-    diagnosis: "Periodontitis",
-    treatment: "Root planning"
-  }]
-};
-
-var tooth_sensitivity = {
+  title: "Concern with your smile",
+  question: "Do you notice any stains on your teeth?",
+  diagnosis: "Discoloration of tooth",
+  treatment: "Polishing"
+}, {
   id: 4,
-  title: "Tooth Sensitivity",
-  questions: [{
-    id: 1,
-    question: "Have you had sensitive teeth?",
-    diagnosis: "Hypersensitivity",
-    treatment: "Desensitizing toothpaste"
-  }, {
-    id: 2,
-    question: "Gum receding or pulling away from the teeth?",
-    diagnosis: "Hypersensitivity",
-    treatment: "Desensitizing toothpaste"
-  }, {
-    id: 3,
-    question: "Are your teeth sensitive to cold air, ice water, and sweets or brushing?",
-    diagnosis: "Hypersensitivity",
-    treatment: "Restoration"
-  }, {
-    id: 4,
-    question: "Do you brush your teeth with a hard toothbrush or brush with overly hard force? Y or N  ?",
-    diagnosis: "Hypersensitivity",
-    treatment: "Restoration"
-  }]
-};
-
-var yellow_teeth = {
+  title: "Concern with your smile",
+  question: "In a wide smile, are any of your teeth of a different size or different color?",
+  diagnosis: "Aesthetic problem",
+  treatment: "Cosmetic correction"
+}, {
   id: 5,
-  title: "Yellow Teeth",
-  questions: [{
-    id: 1,
-    question: "Do you have yellow or darker tooth?",
-    diagnosis: "Discoloration of tooth",
-    treatment: "Bleaching"
-  }, {
-    id: 2,
-    question: "Do you have old restoration?",
-    diagnosis: "Mal-restoration",
-    treatment: "Revised restoration"
-  }, {
-    id: 3,
-    question: "Any habit, like smoking, drinking tea or coffee?",
-    diagnosis: "Staining of tooth",
-    treatment: "Polishing"
-  }, {
-    id: 4,
-    question: "Tooth is not cleaning by brushing & flossing twice a day?",
-    diagnosis: "Staining of tooth",
-    treatment: "Polishing"
-  }]
-};
-
-var pain = {
+  title: "Concern with your smile",
+  question: "Do any of your front teeth 'stick out'?",
+  diagnosis: "Aesthetic problem",
+  treatment: "Cosmetic correction"
+}, {
   id: 6,
-  title: 'Pain',
-  questions: [{
-    id: 1,
-    question: "Pain with cold?",
-    diagnosis: "Reversible pulpitis",
-    treatment: "Restoration"
-  }, {
-    id: 2,
-    question: "Pain with hot & cold both?",
-    diagnosis: "Irreversible pulpitis",
-    treatment: "Root canal therapy"
-  }, {
-    id: 3,
-    question: "Spontaneous pain?",
-    diagnosis: "Irreversible pulpitis",
-    treatment: "Root canal therapy"
-  }, {
-    id: 4,
-    question: "Pain last more than 30 seconds?",
-    diagnosis: "Irreversible pulpitis",
-    treatment: "Root canal therapy"
-  }, {
-    id: 5,
-    question: "Pain last less than 30 seconds?",
-    diagnosis: "Reversible pulpitis",
-    treatment: "Restoration"
-  }, {
-    id: 6,
-    nestedQuestion: true,
-    question: "Pain spread to ear & forehead?",
-    questions: [{
-      id: 1,
-      question: "Pain starts from jaw joint?",
-      diagnosis: "TMD",
-      treatment: "Medication & therapy"
-    }, {
-      id: 2,
-      question: "Pain starts from cavity tooth?",
-      diagnosis: "Irreversible pulpitis",
-      treatment: "Root canal therapy"
-    }]
-  }, {
-    id: 7,
-    question: "Difficulty in chewing & biting?",
-    nestedQuestion: true,
-    questions: [{
-      id: 1,
-      question: "Pain starts from jaw joint?",
-      diagnosis: "TMD",
-      treatment: "Medication & therapy"
-    }, {
-      id: 2,
-      question: "Pain related to cavity teeth?",
-      diagnosis: "TMD",
-      treatment: "Medication & therapy"
-    }, {
-      id: 3,
-      question: "Pain related to wisdom teeth?",
-      diagnosis: "Pericoronitis",
-      treatment: "Extraction of wisdom teeth"
-    }]
-  }, {
-    id: 8,
-    question: "Do you have any sores or lumps in or near your mouth?",
-    diagnosis: "Apthous ulcer",
-    treatment: "Medication"
-  }, {
-    id: 9,
-    question: "pain /clicking in the jaw joint?",
-    diagnosis: "TMD",
-    treatment: "Medication & therapy"
-  }, {
-    id: 10,
-    question: "Are you aware if you are clenching or grinding your teeth?",
-    nestedQuestion: true,
-    questions: [{
-      id: 1,
-      question: "Pain starts from jaw joint?",
-      diagnosis: "TMD",
-      treatment: "Medication & therapy"
-    }, {
-      id: 2,
-      question: "Pain related to individual tooth?",
-      diagnosis: "Crack tooth syndrome",
-      treatment: "Root canal therapy"
-    }]
-  }]
-};
-
-var discomfort = {
+  title: "Concern with your smile",
+  question: "Are your lower six front teeth crooked and uneven in appearance?",
+  diagnosis: "Malocclusion",
+  treatment: "Orthodontic correction"
+}, {
   id: 7,
+  title: "Concern with your smile",
+  question: "Do your crowns / fillings/ laminates look artificial or a different color than your natural teeth?",
+  diagnosis: "Aesthetic problem",
+  treatment: "Cosmetic correction"
+}, {
+  id: 8,
+  title: "Concern with your smile",
+  question: "When you smile broadly, do you feel that too much of your gums show?",
+  diagnosis: "Aesthetic problem",
+  treatment: "Cosmetic correction"
+}, {
+  id: 9,
+  title: "Concern with your smile",
+  question: "Do your gums curve around your teeth in any other shape than a ' half moon shape '?",
+  diagnosis: "Aesthetic problem",
+  treatment: "Cosmetic correction"
+}, {
+  id: 10,
+  title: "Concern with your smile",
+  question: "Do you feel your smile appears unaesthetic for any reason?",
+  diagnosis: "Aesthetic problem",
+  treatment: "Cosmetic correction"
+}, {
+  id: 11,
+  title: "Gum Bleeding",
+  question: "Bleeding gums?",
+  diagnosis: "Gingivitis",
+  treatment: "Scaling"
+}, {
+  id: 12,
+  title: "Gum Bleeding",
+  question: "Do you feel your gums are red and swollen?",
+  diagnosis: "Gingivitis",
+  treatment: "Scaling"
+}, {
+  id: 13,
+  title: "Gum Bleeding",
+  question: "Do you have any sensitive, tender gums?",
+  diagnosis: "Gingivitis",
+  treatment: "Scaling"
+}, {
+  id: 14,
+  title: "Gum Bleeding",
+  question: "Is your breath is not fresh as it can be?",
+  diagnosis: "Gingivitis",
+  treatment: "Scaling"
+}, {
+  id: 15,
+  title: "Bad Breath",
+  question: "Persistent bad breath?",
+  diagnosis: "Periodontitis",
+  treatment: "Scaling"
+}, {
+  id: 16,
+  title: "Bad Breath",
+  question: "Pus in the gums?",
+  diagnosis: "Gingivitis with periodontitis",
+  treatment: "Scaling"
+}, {
+  id: 17,
+  title: "Bad Breath",
+  question: "Have you suffer from diseases, DM/ sinusitis/ IBS?",
+  diagnosis: "Bad breath due to systemic disease",
+  treatment: "Consult for concern disease.    "
+}, {
+  id: 18,
+  title: "Bad Breath",
+  question: "Loose or mobile teeth?",
+  diagnosis: "Periodontitis",
+  treatment: "Root planning"
+}, {
+  id: 19,
+  title: "Tooth Sensitivity",
+  question: "Have you had sensitive teeth?",
+  diagnosis: "Hypersensitivity",
+  treatment: "Desensitizing toothpaste"
+}, {
+  id: 20,
+  title: "Tooth Sensitivity",
+  question: "Gum receding or pulling away from the teeth?",
+  diagnosis: "Hypersensitivity",
+  treatment: "Desensitizing toothpaste"
+}, {
+  id: 21,
+  title: "Tooth Sensitivity",
+  question: "Are your teeth sensitive to cold air, ice water, and sweets or brushing?",
+  diagnosis: "Hypersensitivity",
+  treatment: "Restoration"
+}, {
+  id: 22,
+  title: "Tooth Sensitivity",
+  question: "Do you brush your teeth with a hard toothbrush or brush with overly hard force? Y or N  ?",
+  diagnosis: "Hypersensitivity",
+  treatment: "Restoration"
+}, {
+  id: 23,
+  title: "Yellow Teeth",
+  question: "Do you have yellow or darker tooth?",
+  diagnosis: "Discoloration of tooth",
+  treatment: "Bleaching"
+}, {
+  id: 24,
+  title: "Yellow Teeth",
+  question: "Do you have old restoration?",
+  diagnosis: "Mal-restoration",
+  treatment: "Revised restoration"
+}, {
+  id: 25,
+  title: "Yellow Teeth",
+  question: "Any habit, like smoking, drinking tea or coffee?",
+  diagnosis: "Staining of tooth",
+  treatment: "Polishing"
+}, {
+  id: 26,
+  title: "Yellow Teeth",
+  question: "Tooth is not cleaning by brushing & flossing twice a day?",
+  diagnosis: "Staining of tooth",
+  treatment: "Polishing"
+}, {
+  id: 27,
+  title: 'Pain',
+  question: "Pain with cold?",
+  diagnosis: "Reversible pulpitis",
+  treatment: "Restoration"
+}, {
+  id: 28,
+  title: 'Pain',
+  question: "Pain with hot & cold both?",
+  diagnosis: "Irreversible pulpitis",
+  treatment: "Root canal therapy"
+}, {
+  id: 29,
+  title: 'Pain',
+  question: "Spontaneous pain?",
+  diagnosis: "Irreversible pulpitis",
+  treatment: "Root canal therapy"
+}, {
+  id: 30,
+  title: 'Pain',
+  question: "Pain last more than 30 seconds?",
+  diagnosis: "Irreversible pulpitis",
+  treatment: "Root canal therapy"
+}, {
+  id: 31,
+  title: 'Pain',
+  question: "Pain last less than 30 seconds?",
+  diagnosis: "Reversible pulpitis",
+  treatment: "Restoration"
+}, {
+  id: 32,
+  title: "Pain spread to ear & forehead?",
+  question: "Pain starts from jaw joint?",
+  diagnosis: "TMD",
+  treatment: "Medication & therapy"
+}, {
+  id: 33,
+  title: "Pain spread to ear & forehead?",
+  question: "Pain starts from cavity tooth?",
+  diagnosis: "Irreversible pulpitis",
+  treatment: "Root canal therapy"
+}, {
+  id: 34,
+  title: 'Pain',
+  nestedQuestion: true,
+  question: "Pain spread to ear & forehead?"
+}, {
+  id: 35,
+  title: "Pain - Difficulty in chewing & biting?",
+  question: "Pain starts from jaw joint?",
+  diagnosis: "TMD",
+  treatment: "Medication & therapy"
+}, {
+  id: 36,
+  question: "Pain related to cavity teeth?",
+  title: "Pain - Difficulty in chewing & biting?",
+  diagnosis: "TMD",
+  treatment: "Medication & therapy"
+}, {
+  id: 37,
+  question: "Pain related to wisdom teeth?",
+  title: "Pain - Difficulty in chewing & biting?",
+  diagnosis: "Pericoronitis",
+  treatment: "Extraction of wisdom teeth"
+}, {
+  id: 38,
+  title: "Pain",
+  question: "Do you have any sores or lumps in or near your mouth?",
+  diagnosis: "Apthous ulcer",
+  treatment: "Medication"
+}, {
+  id: 39,
+  title: "Pain",
+  question: "pain /clicking in the jaw joint?",
+  diagnosis: "TMD",
+  treatment: "Medication & therapy"
+}, {
+  id: 40,
+  question: "Pain starts from jaw joint?",
+  title: "Pain: Are you aware if you are clenching or grinding your teeth?",
+  diagnosis: "TMD",
+  treatment: "Medication & therapy"
+}, {
+  id: 41,
+  title: "Pain: Are you aware if you are clenching or grinding your teeth?",
+  question: "Pain related to individual tooth?",
+  diagnosis: "Crack tooth syndrome",
+  treatment: "Root canal therapy"
+}, {
+  id: 42,
   title: "Comfort",
-  questions: [{
-    id: 1,
-    question: "Burning sensation of tongue/ mouth?",
-    diagnosis: "Burning mouth syndrome",
-    treatment: "Medication"
-  }, {
-    id: 2,
-    question: "Altered taste ?",
-    diagnosis: "Tongue pathology",
-    treatment: "Medication"
-  }, {
-    id: 3,
-    question: "Roughness /sharpness of teeth?",
-    diagnosis: "Edges or cusps fracture",
-    treatment: "Grinding & polishing"
-  }, {
-    id: 4,
-    question: "Roughness/ sharpness of existing filling?",
-    diagnosis: "Fracture restoration",
-    treatment: "Revised restoration"
-  }, {
-    id: 5,
-    question: "Food trapping between your teeth?",
-    diagnosis: "Periodontal pocket",
-    treatment: "Periodontal curettage"
-  }, {
-    id: 6,
-    question: "Cavity on your teeth?",
-    diagnosis: "Dental caries",
-    treatment: "Restoration"
-  }, {
-    id: 7,
-    question: "Concerned with existing crown/ bridge?",
-    diagnosis: "Bad prosthesis",
-    treatment: "Revised prosthesis"
-  }, {
-    id: 8,
-    question: "Concerned with existing denture/false tooth?",
-    diagnosis: "Bad prosthesis",
-    treatment: "Revised prosthesis"
-  }, {
-    id: 9,
-    question: "Concerned with missing teeth",
-    diagnosis: "Malocclusion",
-    treatment: "Prosthesis"
-  }]
-};
-
-var all = [smile, gum_bleeding, bad_breath, tooth_sensitivity, yellow_teeth, pain, discomfort];
+  question: "Burning sensation of tongue/ mouth?",
+  diagnosis: "Burning mouth syndrome",
+  treatment: "Medication"
+}, {
+  id: 43,
+  title: "Comfort",
+  question: "Altered taste ?",
+  diagnosis: "Tongue pathology",
+  treatment: "Medication"
+}, {
+  id: 44,
+  title: "Comfort",
+  question: "Roughness /sharpness of teeth?",
+  diagnosis: "Edges or cusps fracture",
+  treatment: "Grinding & polishing"
+}, {
+  id: 45,
+  title: "Comfort",
+  question: "Roughness/ sharpness of existing filling?",
+  diagnosis: "Fracture restoration",
+  treatment: "Revised restoration"
+}, {
+  id: 46,
+  title: "Comfort",
+  question: "Food trapping between your teeth?",
+  diagnosis: "Periodontal pocket",
+  treatment: "Periodontal curettage"
+}, {
+  id: 47,
+  title: "Comfort",
+  question: "Cavity on your teeth?",
+  diagnosis: "Dental caries",
+  treatment: "Restoration"
+}, {
+  id: 48,
+  title: "Comfort",
+  question: "Concerned with existing crown/ bridge?",
+  diagnosis: "Bad prosthesis",
+  treatment: "Revised prosthesis"
+}, {
+  id: 49,
+  title: "Comfort",
+  question: "Concerned with existing denture/false tooth?",
+  diagnosis: "Bad prosthesis",
+  treatment: "Revised prosthesis"
+}, {
+  id: 50,
+  title: "Comfort",
+  question: "Concerned with missing teeth",
+  diagnosis: "Malocclusion",
+  treatment: "Prosthesis"
+}];
 
 /* harmony default export */ __webpack_exports__["a"] = (all);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(22)
+  __webpack_require__(13)
 }
-var normalizeComponent = __webpack_require__(12)
+var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(13)
+var __vue_script__ = __webpack_require__(18)
 /* template */
-var __vue_template__ = __webpack_require__(14)
+var __vue_template__ = __webpack_require__(19)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -12895,321 +13007,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
 /* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Hello world from Test.vue")])])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3035f8c6", module.exports)
-  }
-}
-
-/***/ }),
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(12)
-/* script */
-var __vue_script__ = __webpack_require__(20)
-/* template */
-var __vue_template__ = __webpack_require__(21)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "assets/es6/components/Evaluation.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d1f21d20", Component.options)
-  } else {
-    hotAPI.reload("data-v-d1f21d20", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {};
-  },
-
-  methods: {
-    yesClickHandler: function yesClickHandler() {},
-    noClickHandler: function noClickHandler() {}
-  }
-});
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "text-center evaluation-question-content" }, [
-    _c("h2", [_vm._v("Let's get started")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "question" }, [
-      _c("h4", { staticClass: "hfd_color mb-3" }, [
-        _vm._v("Concern with your smile")
-      ]),
-      _vm._v(" "),
-      _c("h3", { staticClass: "hfd_color" }, [
-        _vm._v("Are your two upper front teeth too long or too wide? ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "yes_no", on: { click: _vm.yesClickHandler } },
-        [_vm._v("Yes")]
-      ),
-      _vm._v(" "),
-      _c("p", { staticClass: "answer" }, [
-        _vm._v(
-          "Probable diagnosis: Aesthetic problem, Treatment: Cosmetic correction "
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "yes_no", on: { click: _vm.noClickHandler } },
-        [_vm._v("No")]
-      ),
-      _vm._v(" "),
-      _vm._m(0)
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("button", { staticClass: "prev_next" }, [
-        _c("i", { staticClass: "fa fa-caret-left" })
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "prev_next" }, [
-        _c("i", { staticClass: "fa fa-caret-right" })
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d1f21d20", module.exports)
-  }
-}
-
-/***/ }),
-/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(23);
+var content = __webpack_require__(14);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(25)("4b4a296e", content, false, {});
+var update = __webpack_require__(16)("4b4a296e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -13225,10 +13033,10 @@ if(false) {
 }
 
 /***/ }),
-/* 23 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(24)(false);
+exports = module.exports = __webpack_require__(15)(false);
 // imports
 
 
@@ -13239,7 +13047,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 
 /***/ }),
-/* 24 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /*
@@ -13321,7 +13129,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 25 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -13340,7 +13148,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(26)
+var listToStyles = __webpack_require__(17)
 
 /*
 type StyleObject = {
@@ -13549,7 +13357,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 26 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -13580,6 +13388,297 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Hello world from Test.vue")])])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3035f8c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(21)
+/* template */
+var __vue_template__ = __webpack_require__(22)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "assets/es6/components/Evaluation.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d1f21d20", Component.options)
+  } else {
+    hotAPI.reload("data-v-d1f21d20", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(10);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+
+  computed: _extends({
+    currentTestId: {
+      get: function get() {
+        return this.$store.state.currentTestId;
+      },
+      set: function set(value) {
+        this.$store.commit('changeCurrentTestId', value);
+      }
+    }
+  }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])({
+    data: function data(state) {
+      return state.data;
+    },
+    isSummary: function isSummary(state) {
+      return state.currentTestId >= this.maxId;
+    },
+    currentTest: function currentTest(state) {
+      return state.data.find(function (test) {
+        return test.id === state.currentTestId;
+      }) || {};
+    },
+    maxId: function maxId(state) {
+      var ids = state.data.map(function (test) {
+        return test.id;
+      });
+      return Math.max.apply(Math, _toConsumableArray(ids));
+    },
+    minId: function minId(state) {
+      var ids = state.data.map(function (test) {
+        return test.id;
+      });
+      return Math.min.apply(Math, _toConsumableArray(ids));
+    },
+    hasNextTest: function hasNextTest(state) {
+      return this.currentTestId < this.maxId;
+    },
+    hasPrevTest: function hasPrevTest(state) {
+      return this.currentTestId > this.minId;
+    }
+  })),
+  methods: {
+    yesClickHandler: function yesClickHandler() {
+      //saved in test
+      this.$store.commit('addTest', this.currentTest);
+      //changeCurrentTestId
+      this.$store.commit('changeCurrentTestId', ++this.currentTestId);
+    },
+    noClickHandler: function noClickHandler() {
+      //changeCurrentTestId
+      this.$store.commit('changeCurrentTestId', ++this.currentTestId);
+    },
+    prevHandler: function prevHandler() {
+      //changeCurrentTestId
+      this.$store.commit('changeCurrentTestId', --this.currentTestId);
+    },
+    nextHandler: function nextHandler() {
+      //changeCurrentTestId
+      this.$store.commit('changeCurrentTestId', ++this.currentTestId);
+    }
+  }
+});
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "text-center evaluation-question-content" }, [
+    !_vm.isSummary
+      ? _c("div", { staticClass: "question-block" }, [
+          _c("h2", [_vm._v("Let's get started")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "question" }, [
+            _c("h4", { staticClass: "hfd_color mb-3" }, [
+              _vm._v(_vm._s(this.currentTest.title))
+            ]),
+            _vm._v(" "),
+            _c("h3", { staticClass: "hfd_color" }, [
+              _vm._v(_vm._s(this.currentTest.question))
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "yes_no", on: { click: _vm.yesClickHandler } },
+              [_vm._v("Yes")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "answer" }, [
+              _vm._v(
+                "Probable diagnosis: " +
+                  _vm._s(this.currentTest.diagnosis) +
+                  ", Treatment: " +
+                  _vm._s(this.currentTest.treatment)
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "yes_no", on: { click: _vm.noClickHandler } },
+              [_vm._v("No")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-center my-2 hfd_color" }, [
+              _vm._v(
+                "\n        (" +
+                  _vm._s(this.currentTestId) +
+                  "/" +
+                  _vm._s(this.data.length) +
+                  ")\n      "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "prev_next",
+                  attrs: { disabled: !this.hasPrevTest },
+                  on: { click: _vm.prevHandler }
+                },
+                [_c("i", { staticClass: "fa fa-caret-left" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "prev_next",
+                  attrs: { disabled: !this.hasNextTest },
+                  on: { click: _vm.nextHandler }
+                },
+                [_c("i", { staticClass: "fa fa-caret-right" })]
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.isSummary
+      ? _c("div", { staticClass: "summary-block" }, [
+          _c("h2", [_vm._v("summary block")])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d1f21d20", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

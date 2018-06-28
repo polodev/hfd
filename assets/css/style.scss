@@ -504,6 +504,10 @@ a.item {
           transform: translateY(5px);
           background-color: darken($hfd_primary_color, 5%);
         }
+        &:disabled {
+          background: gray;
+          border-color: darkgrey;
+        }
       }
       .yes_no {
        color: white;

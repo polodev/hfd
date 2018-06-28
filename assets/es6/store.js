@@ -1,30 +1,28 @@
 import Vue from 'vue';
 import Vuex from 'vuex'
-import data from './evaluation_data'
+import data from './evaluation_data_flat'
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     data,
     tests: [],
-    currentEvaluationId: 1,
-    currentQuestionsId: 1,
-    currentQuestion: [],
+    currentTestId: 1,
   },
   mutations: {
     addTest(state, payload) {
-      state.push(payload)
+      const isAlreadyExists = state.tests.find(test => test.id == payload.id)
+      if (isAlreadyExists) {
+        return state;
+      }else {
+        return state.tests.push(payload)
+      }
     },
-    changeCurrentEvaluationId (state, id) {
-      state.currentEvaluationId = id;
-    },
-    changeCurrentQuestionsId (state, id) {
-      state.currentQuestionsId = id;
-    },
-    changeCurrentQuestion (state, question) {
-      state.currentQuestion = question;
+    changeCurrentTestId (state, newId) {
+      state.currentTestId = newId
     }
 
-  }
+  },
+
 })
 
 export default store;
