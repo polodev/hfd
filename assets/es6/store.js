@@ -17,6 +17,14 @@ const store = new Vuex.Store({
         return state.tests.push(payload)
       }
     },
+    removeCurrentFromTests(state) {
+      const isAlreadyExists = state.tests.find(test => test.id == state.currentTestId)
+      if (isAlreadyExists) {
+        return state.tests = state.tests.filter(test => test.id != state.currentTestId)
+      } else {
+        return state;
+      }
+    },
     changeCurrentTestId (state, newId) {
       state.currentTestId = newId
     }

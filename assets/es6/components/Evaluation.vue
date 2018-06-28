@@ -63,8 +63,8 @@ export default {
       data: state => state.data,
       tests: state => state.tests,
       isSummary ( state ) {
-        // return state.currentTestId >= this.maxId
-        return state.currentTestId >= 6
+        return state.currentTestId >= this.maxId
+        // return state.currentTestId >= 6
       },
       currentTest (state) {
         return state.data.find(test => test.id === state.currentTestId) || {}
@@ -93,6 +93,8 @@ export default {
       this.$store.commit('changeCurrentTestId', ++this.currentTestId)
     },
     noClickHandler () {
+      //delete already inside test
+      this.$store.commit('removeCurrentFromTests');
       //changeCurrentTestId
       this.$store.commit('changeCurrentTestId', ++this.currentTestId)
     },
