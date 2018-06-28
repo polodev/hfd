@@ -43,11 +43,18 @@ $nav_bg: #c94e5d;
  .btn-hfd {
     color: #fff;
     background-color: $hfd_primary_color;
-    border-color: darken($hfd_primary_color, 5%);
-    &:hover, &:active {
+    border-bottom: 4px solid darken($hfd_primary_color, 25%);
+    &:hover{
       background-color: darken($hfd_primary_color, 10%);
-      border-color: darken($hfd_primary_color, 15%);
-      color: #fff;
+      color: white;
+    }
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      background-color: darken($hfd_primary_color, 20%);
+      transform: translateY(5px);
+      -webkit-transform: translateY(5px);
     }
  }
  .btn-hfd-link {
@@ -461,7 +468,6 @@ a.item {
       margin-bottom: 80px;
     }
     img.main {
-      max-width: 200px;
       margin-right: 50px;
       @media screen and (max-width: 800px) {
         margin-bottom: 30px;
@@ -469,3 +475,54 @@ a.item {
       }
     }
   }
+
+  /**
+   * Evaluations summary
+   */
+   #evaluation-summary {
+    .evaluation-question-content {
+      margin-top: 60px;
+    }
+    button {
+      cursor: pointer;
+      font-family: NuevaStdBold;
+    }
+    .question {
+      margin-top: 40px;
+      .prev_next {
+        color: white;
+        background: $hfd_primary_color;
+        border-bottom: 4px solid darken($hfd_primary_color, 20%);
+        margin-top: 20px;
+        padding: 5px 17px 0px;
+        font-size: 20px;
+        &:focus{
+          outline: none;
+        }
+        &:active {
+          -webkit-transform: translateY(5px);
+          transform: translateY(5px);
+          background-color: darken($hfd_primary_color, 5%);
+        }
+      }
+      .yes_no {
+       color: white;
+        background: $hfd_primary_color;
+        border-bottom: 4px solid darken($hfd_primary_color, 20%);
+        border-radius: 10px;
+        padding: 4px 26px 0;
+        &:focus {
+          outline: none;
+        }
+        &:active {
+          -webkit-transform: translateY(5px);
+          transform: translateY(5px);
+          background-color: darken($hfd_primary_color, 5%);
+        }
+      }
+      p.answer {
+        margin: 8px 0 6px;
+        color: $hfd_primary_color;
+      }
+    }
+   }
