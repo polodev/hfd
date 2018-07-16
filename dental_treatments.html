@@ -37,13 +37,14 @@ title: Treatments
             <img class="my-3" src='{{site.url}}{{site.baseurl}}/assets/images/treatments/basic_dental_procedure_2.jpg' alt='Basic Dental procedure in Bangladesh'/>
             <h3 class="hfd_color">Basic dental procedures</h3>
             <ul>
-              <li>Comprehensive consultation</li>
-              <li>Professional clean up</li>
-              <li>Gum treatment</li>
-              <li>Cavity fillings</li>
-              <li>surgical extractions/ 3 rd molar extraction</li>
-              <li>Artificial tooth/ Prosthesis:</li>
-              <li>Child dental care</li>
+              {%assign treatment = site.treatments | sort: 'number' | where:"procedure","basic" %}
+              {% for topic in treatment %}
+                <li>
+                  <a class="hfd_color" href='{{site.url}}{{site.baseurl}}{{topic.url}}'>
+                    {{topic.title}}
+                  </a>
+                </li>
+              {% endfor %}
             </ul>
           </section>
       </div>
@@ -52,14 +53,14 @@ title: Treatments
             <img class="my-3" src='{{site.url}}{{site.baseurl}}/assets/images/treatments/advanced_dental_procedure_2.jpg' alt='Basic Dental procedure in Bangladesh'/>
             <h3 class='hfd_color'>Advanced dental procedures</h3>
             <ul>
-              <li>Cosmetic dentistry</li>
-              <li>Dental implants</li>
-              <li>Fixed Orthodontics</li>
-              <li>Full mouth reconstruction</li>
-              <li>Advanced root canal treatment</li>
-              <li>Tooth whitening</li>
-              <li>Advanced Children’s dentistry</li>
-              <li>Flexible denture</li>
+              {%assign treatment = site.treatments | sort: 'number' | where:"procedure","advanced" %}
+              {% for topic in treatment %}
+                <li>
+                  <a class="hfd_color" href='{{site.url}}{{site.baseurl}}{{topic.url}}'>
+                    {{topic.title}}
+                  </a>
+                </li>
+              {% endfor %}
             </ul>
           </section>
       </div>

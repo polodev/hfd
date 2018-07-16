@@ -8,3 +8,8 @@ collections:
     permalink: /:collection/:title/
     published: true
     page: knowledge
+  treatments:
+    output: true
+    permalink: /:collection/:title/
+    published: true
+    page: treatments

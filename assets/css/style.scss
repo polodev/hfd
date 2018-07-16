@@ -488,60 +488,86 @@ a.item {
   /**
    * Evaluations summary
    */
-   #evaluation-summary {
-    .evaluation-question-content {
-      margin-top: 50px;
-      @media screen and (max-width: 800px) {
-        margin-top: 20px;
+ #evaluation-summary {
+  .evaluation-question-content {
+    margin-top: 50px;
+    @media screen and (max-width: 800px) {
+      margin-top: 20px;
+    }
+  }
+  button {
+    cursor: pointer;
+    font-family: NuevaStdBold;
+  }
+  .question {
+    margin-top: 30px;
+    @media screen and (max-width: 800px) {
+      margin-top: 10px;
+    }
+    .prev_next {
+      color: white;
+      background: $hfd_primary_color;
+      border-bottom: 4px solid darken($hfd_primary_color, 20%);
+      margin-top: 20px;
+      padding: 5px 17px 0px;
+      font-size: 20px;
+      &:focus{
+        outline: none;
+      }
+      &:active {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+        background-color: darken($hfd_primary_color, 5%);
+      }
+      &:disabled {
+        background: gray;
+        border-color: darkgrey;
       }
     }
-    button {
-      cursor: pointer;
-      font-family: NuevaStdBold;
-    }
-    .question {
-      margin-top: 30px;
-      @media screen and (max-width: 800px) {
-        margin-top: 10px;
+    .yes_no {
+     color: white;
+      background: $hfd_primary_color;
+      border-bottom: 4px solid darken($hfd_primary_color, 20%);
+      border-radius: 10px;
+      padding: 4px 26px 0;
+      &:focus {
+        outline: none;
       }
-      .prev_next {
-        color: white;
-        background: $hfd_primary_color;
-        border-bottom: 4px solid darken($hfd_primary_color, 20%);
-        margin-top: 20px;
-        padding: 5px 17px 0px;
-        font-size: 20px;
-        &:focus{
-          outline: none;
-        }
-        &:active {
-          -webkit-transform: translateY(5px);
-          transform: translateY(5px);
-          background-color: darken($hfd_primary_color, 5%);
-        }
-        &:disabled {
-          background: gray;
-          border-color: darkgrey;
-        }
-      }
-      .yes_no {
-       color: white;
-        background: $hfd_primary_color;
-        border-bottom: 4px solid darken($hfd_primary_color, 20%);
-        border-radius: 10px;
-        padding: 4px 26px 0;
-        &:focus {
-          outline: none;
-        }
-        &:active {
-          -webkit-transform: translateY(5px);
-          transform: translateY(5px);
-          background-color: darken($hfd_primary_color, 5%);
-        }
-      }
-      p.answer {
-        margin: 8px 0 6px;
-        color: $hfd_primary_color;
+      &:active {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+        background-color: darken($hfd_primary_color, 5%);
       }
     }
-   }
+    p.answer {
+      margin: 8px 0 6px;
+      color: $hfd_primary_color;
+    }
+  }
+ }
+
+ /**
+  * treatments collections
+  */
+
+.treatments_collections {
+  .image_container {
+    text-align: center;
+  }
+  figure {
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, .2);
+    display: inline-block;
+    padding: 5px;
+    margin: 10px; 
+    img {
+      max-width: 300px;
+      border: 1px solid #eee;
+    }
+    figcaption {
+      margin: 10px 0;
+    }
+  }
+}
+
+
