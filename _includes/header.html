@@ -7,14 +7,30 @@
     <!-- Bootstrap CSS -->
     <!-- <link rel="icon" href="{{ 'assets/images/page/favicon.ico' | absolute_url }}"> -->
    <title>{{ page.title }} | {{site.title}}</title>
+
+<link rel="shortcut icon" href='{{ "assets/images/favicon.ico" | relative_url }}'>
+<link rel="apple-touch-icon" href='{{ "assets/images/favicon.ico" | relative_url }}'>
+
+<meta name="Description" content="{{ page.title }} | {{site.title}} - Best Dental service in Dhaka Dhanmondi area">
+<meta name="keyword" content="best dental in dhaka city, dental implant in dhaka city, Root canal in dhaka city, five star dental service in dhaka city, Best dental in Dhanmondi area">
+
+<meta property="og:title" content="{{ page.title }} | {{site.title}}">
+<meta property="og:description" content="Best Dental Service in Dhanmondi and Dhaka City">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{site.url}}{{site.baseurl}}{{page.url}}">
+<meta property="og:image" content={{"assets/images/icons/logo_home.png" | relative_url }}>
+
+
+
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ "assets/bootstrap/bootstrap.min.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "assets/css/owl.carousel.min.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "assets/css/owl.theme.default.min.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
-  {% if include.page != 'home' %}
-    <link rel="stylesheet" href="{{ "assets/css/other_page.css" | relative_url }}">
-  {% endif %}
+  <link rel="stylesheet" href="{{ "assets/css/other_page.css" | relative_url }}">
+  <!-- {% if include.page != 'home' %} -->
+    <!-- <link rel="stylesheet" href="{{ "assets/css/other_page.css" | relative_url }}"> -->
+  <!-- {% endif %} -->
   </head>
   <body>
   
