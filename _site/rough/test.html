@@ -1,0 +1,37 @@
+<img src='assets/images/icons/home_icon.png' alt=''/>
+1. Preventive Care
+2. Family Dentistry
+3. Cosmetic Dentistry
+4. Orthodontics
+5. Dental Implants
+6. Dental Emergencies
+7. Dental Healthcare
+8. FAQ
+
+preventive-care.html family-dentistry.html cosmetic-dentistry.html dental-implants.html dental-emergencies.html dental-healthcare.html orthodontics.html faq.html
+    <section>
+      <div class='row'>
+        {% assign sorted = site.knowledge | sort: 'number' %}
+        {% for topic in sorted %}
+           {% unless topic.published %} {% continue %}{% endunless %}
+          <div class='col-md-4'>
+            <h1>{{topic.number}}</h1>
+          </div>
+          <!-- /.col-md-4 -->
+        {% endfor %}
+      </div>
+      <!-- /.row -->
+    </section>
+
+------------
+
+evaluation_block[]
+  smile_block[]
+    questions[]
+      indivitual_question{} //questionComponent
+        nested_question[]
+          single_question{}questionComponent
+-------------
+
+
+
