@@ -1,20 +1,14 @@
-body {
-  margin-bottom: 120px; }
+body { margin-bottom: 120px; }
 
-footer {
-  justify-content: center;
-  height: 85px; }
-  @media screen and (min-width: 800px) and (max-width: 1199px) {
-    footer {
-      height: 110px; } }
-  footer nav a {
-    margin-right: 20px;
-    padding-right: 20px; }
-  footer nav p {
-    display: none; }
+footer { justify-content: center; height: 85px; }
 
-/**
- * accordion page
- */
-.accordion .btn {
-  white-space: normal; }
+@media screen and (min-width: 800px) and (max-width: 1199px) { footer { height: 110px; } }
+
+footer nav a { margin-right: 20px; padding-right: 20px; }
+
+footer nav p { display: none; }
+
+/** accordion page */
+.accordion .btn { white-space: normal; }
+
+/*# sourceMappingURL=other_page.css.map */
