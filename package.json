@@ -13,7 +13,7 @@
   "author": "Polo Dev",
   "license": "ISC",
   "devDependencies": {
-    "laravel-mix": "^2.1.11"
+    "laravel-mix": "^6.0.49"
   },
   "dependencies": {
     "vue": "^2.5.16",
