@@ -1,52 +1,12 @@
-    <footer role="footer">
-        <nav class="footer_nav" role="navigation">
-            <a {% if page.page=='home' %}class='active'{% endif %} href='{{site.url}}{{site.baseurl}}/'>
-                <img src="{{'assets/images/icons/home_icon.png' | relative_url}}" alt=''/>
-                <h2>Home</h2>
-                <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-            </a>
-            <a {% if page.page=='dentists' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/dentists'>
-                <img src="{{'assets/images/icons/the_dental_icon.png' | relative_url}}" alt=''/>
-                <h2>The Dentists</h2>
-                <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-            </a>
-            <a {% if page.page=='treatments' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/dental_treatments'>
-                <img src="{{'assets/images/icons/our_treatment_icon.png' | relative_url}}" alt=''/>
-                <h2>Our treatments</h2>
-                <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-            </a>
-            <a {% if page.page=='knowledge' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/dental_knowledge'>
-                <img src="{{'assets/images/icons/dental_knowledge_icon.png' | relative_url}}" alt=''/>
-                <h2>Dental knowledge</h2>
-                <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-            </a>
-            <a {% if page.page=='evaluation' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/evaluation'>
-                <img src="{{'assets/images/icons/self_evaluation_icon.png' | relative_url}}" alt=''/>
-                <h2>Self Evaluation</h2>
-                <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-            </a>
-            <a {% if page.page=='appointment' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/appointment'>
-                <img src="{{'assets/images/icons/make_an_appointment_icon.png' | relative_url}}" alt=''/>
-                <h2>Make an Appoinment</h2>
-                <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-            </a>
-            <a {% if page.page=='location' %}class='active'{% endif %}  href='{{site.url}}{{site.baseurl}}/contact-and-location'>
-                <img src="{{'assets/images/icons/location_icon.png' | relative_url}}" alt=''/>
-                <h2>Contact and location</h2>
-                <p class="not_home">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-            </a>
-        </nav>
-    </footer>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ "assets/bootstrap/jquery-3.3.1.min.js" | relative_url }}"></script>
-    <script src="{{ "assets/bootstrap/popper.min.js" | relative_url }}"></script>
-    <script src="{{ "assets/bootstrap/bootstrap.min.js" | relative_url }}"></script>
-    <script src="{{ "assets/bootstrap/owl.carousel.min.js" | relative_url }}"></script>
-    <script src="{{ "assets/js/other.js" | relative_url }}"></script>
-    {% if include.vue == 'true' %}
-      <script src="{{ "assets/js/index.js" | relative_url }}"></script>
-    {% endif %}
-    
-  </body>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div><a class="footer-name" href="{{ '/' | relative_url }}">Haris<span>Family Dentistry and Cosmetic Center</span></a><p>A little care. A little confidence.<br>A reason to smile again.</p></div>
+    <div><h2>Visit our clinic</h2><p>{{ site.data.clinic.address }}</p><a href="{{ site.data.clinic.maps }}" target="_blank" rel="noopener noreferrer">Get directions ↗</a></div>
+    <div><h2>Let’s talk</h2><a href="tel:+8801787667977">{{ site.data.clinic.phone_display }}</a><a href="tel:+8801787667971">{{ site.data.clinic.secondary_display }}</a><a href="mailto:{{ site.data.clinic.email }}">{{ site.data.clinic.email }}</a><a href="{{ site.data.clinic.facebook }}" target="_blank" rel="noopener noreferrer">Clinic on Facebook ↗</a></div>
+    <div><h2>Explore</h2><a href="{{ '/dentists/' | relative_url }}">Meet our doctors</a><a href="{{ '/gallery/' | relative_url }}">Photo gallery</a><a href="{{ '/dental_knowledge/' | relative_url }}">Dental knowledge</a><a href="{{ '/about/' | relative_url }}">About the clinic</a><a href="{{ '/training/' | relative_url }}">Professional training</a></div>
+  </div>
+  <div class="wrap footer-bottom"><span>© {{ 'now' | date: '%Y' }} Haris Family Dentistry and Cosmetic Center</span><span>Smile again!</span></div>
+</footer>
+<div class="mobile-actions"><a href="tel:+8801787667977">Call the clinic</a><a href="{{ '/appointment/' | relative_url }}">Make an appointment ↗</a></div>
+</body>
 </html>

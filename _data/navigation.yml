@@ -1,0 +1,21 @@
+- title: Home
+  url: /
+  page: home
+- title: Our doctors
+  url: /dentists/
+  page: dentists
+- title: Dental care
+  url: /dental_treatments/
+  page: treatments
+- title: Facial aesthetics
+  url: /facial-aesthetics/
+  page: aesthetics
+- title: Gallery
+  url: /gallery/
+  page: gallery
+- title: Training
+  url: /training/
+  page: training
+- title: Contact
+  url: /contact-and-location/
+  page: location

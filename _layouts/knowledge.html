@@ -1,20 +1,6 @@
 ---
-layout: otherpage
+layout: default
 ---
-<div id='knowledge'>
-  <div class='container'>
-      <div class='text-center'>
-        <a href='{{site.url}}{{site.baseurl}}/dental_knowledge'>
-          <img class="hfd_bg_color" src="{{'assets/images/icons/dental_knowledge_icon.png' | relative_url}}" alt=''/>
-          <h1 class="mt-2">Dental Knowledge</h1>
-        </a>
-        <h2 class='hfd_color'>Frequently Asked Questions</h2>
-      <img class="icon mb-3" src='{{site.url}}{{site.baseurl}}/{{page.icon}}' alt='' class='icon'/>
-      <p class="hfd_color mb-0">{{page.title}}</p>
-      <img class="main single" src='{{site.url}}{{site.baseurl}}/{{page.image}}' alt=''/>
-    </div>
-  </div>
-<!-- /.container -->
-</div>
-<!-- /#knowledge_layout -->
-{{content}}
+<section class="page-intro wrap"><p class="eyebrow"><a href="{{ '/dental_knowledge/' | relative_url }}">Dental knowledge</a> / Questions & answers</p><h1>{{ page.title }}</h1><p class="intro-copy">General information from our dental library. Your dentist can explain how it relates to your own oral health.</p></section>
+<section class="knowledge-article section wrap">{{ content }}</section>
+{% include appointment-banner.html %}

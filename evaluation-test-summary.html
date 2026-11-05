@@ -1,14 +1,8 @@
 ---
-layout: otherpage
+layout: default
 page: evaluation
-title: Evaluation 
+title: Before your dental visit
 ---
-<div id='evaluation-summary'>
-  <div class='container'>
-    <h2 class="text-center page-header">Self Evaluations</h2>
-  </div>
-
-  <evaluation appointment-url="{{site.url}}{{site.baseurl}}/appointment" />
-
-  <!-- /.container -->
-</div>
+{% include page-intro.html eyebrow="Preparing for a consultation" title="Let’s talk about your concerns." text="An online questionnaire cannot examine your teeth. Make a note of what you have noticed and discuss it with a dentist." %}
+<section class="section wrap article-copy"><h2>What would you like to discuss?</h2><ul class="tidy-list"><li>Tooth sensitivity, pain or discomfort</li><li>Bleeding or swollen gums</li><li>A broken tooth, missing teeth or an old filling</li><li>Tooth alignment, your bite or smile appearance</li><li>A child’s teeth or oral-care habits</li></ul><p>Bring any relevant dental records, a list of medicines and your questions to the consultation.</p><div class="button-row"><a class="button" href="{{ '/appointment/' | relative_url }}">Arrange a dental consultation ↗</a><a class="text-link" href="{{ '/dental_knowledge/' | relative_url }}">Browse dental information →</a></div></section>
+{% include appointment-banner.html %}

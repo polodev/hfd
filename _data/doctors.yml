@@ -1,0 +1,32 @@
+- id: haris
+  name: Dr. Haris Muhammad Wali-ur-Rahman
+  short_name: Dr. Haris
+  role: Chief Consultant & Mentor
+  focus: Restorative dentistry & smile design
+  qualifications: BDS (CU), DDS (BSMMU)
+  registration: '2094'
+  image: /assets/images/gallery/doctors/dr-haris-muhammad-wali-ur-rahman-profile.jpeg
+  profile_id: a29
+  facebook_key: haris_facebook
+  biography: A graduate of Chittagong University with postgraduate DDS training from BSMMU, Dr. Haris works in restorative and cosmetic dentistry. His current clinic profile lists him as Associate Professor and Head of the Department of Dental Pharmacology at Bangladesh Dental College, and Chief Consultant and Mentor at Haris Family Dentistry and Cosmetic Center.
+  interests:
+    - Smile design and aesthetic composite restorations
+    - Root canal treatment and restorative dental care
+    - Crowns, bridges and dental implants
+    - Bioclear Method and injection molding training
+- id: sufia
+  name: Dr. Sufia Rahaman Brishty
+  short_name: Dr. Sufia
+  role: Consulting Dental Surgeon & Facial Aesthetician
+  focus: Dentistry, facial aesthetics & permanent makeup
+  qualifications: BDS (DU), PGDAC (India)
+  registration: '5508'
+  image: /assets/images/gallery/doctors/dr-sufia-rahaman-brishty-profile.jpeg
+  profile_id: a31
+  facebook_key: sufia_facebook
+  biography: A Dhaka University graduate from City Dental College, Dr. Sufia combines dental care with facial aesthetics and permanent makeup. Her supplied profile lists a Fellowship in Facial Aesthetic and Aesthetic Medicine and Masters in Micropigmentation in Phoenix, Arizona, USA, together with training in fixed orthodontics and braces.
+  interests:
+    - Dental care, cosmetic dentistry and fixed orthodontics
+    - Facial aesthetics and skin rejuvenation consultations
+    - Microblading, micropigmentation and permanent makeup
+    - Hands-on aesthetic training and mentoring

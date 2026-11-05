@@ -1,33 +1,8 @@
 ---
-layout: otherpage
+layout: default
 page: knowledge
-title: Knowledge
+title: Dental knowledge
 ---
-<div id='knowledge'>
-  <div class='container'>
-    <div class='text-center'>
-      <a class="headline" href='{{site.url}}{{site.baseurl}}/dental_knowledge'>
-        <img class="hfd_bg_color" src="{{'assets/images/icons/dental_knowledge_icon.png' | relative_url}}" alt=''/>
-        <h1 class="mt-2">Dental Knowledge</h1>
-      </a>
-      <h2 class='hfd_color'>Frequently Asked Questions</h2>
-    </div>
-
-    <section>
-      <div class='row'>
-        {% assign sorted = site.knowledge | sort: 'number' %}
-        {%assign knowledge = site.knowledge | sort: 'number' %}
-        {% for topic in knowledge %}
-          <a href="{{site.url}}{{site.baseurl}}{{topic.url}}" class='col-md-4 text-center'>
-            <img class="icon mb-3" src='{{site.url}}{{site.baseurl}}/{{topic.icon}}' alt='' class='icon'/>
-            <p class="hfd_color mb-0">{{topic.title}}</p>
-            <img class="main" src='{{site.url}}{{site.baseurl}}/{{topic.image}}' alt=''/>
-          </a>
-          <!-- /.col-md-4 -->
-        {% endfor %}
-      </div>
-      <!-- /.row -->
-    </section>
-  </div>
-  <!-- /.container --></div>
-<!-- /#knowledge -->
+{% include page-intro.html eyebrow="Understand your dental care" title="A little knowledge. A healthier smile." text="Browse the clinic's dental information library, then discuss your own questions and concerns with your dentist." %}
+<section class="section wrap"><div class="service-grid">{% assign topics = site.knowledge | sort: 'number' %}{% for topic in topics %}<a class="service-card knowledge-card" href="{{ topic.url | relative_url }}"><img src="{{ topic.image | relative_url }}" alt="{{ topic.title }}" loading="lazy"><h2>{{ topic.title }}</h2><span class="text-link">Read the questions & answers →</span></a>{% endfor %}</div></section>
+{% include appointment-banner.html %}

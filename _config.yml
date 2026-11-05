@@ -1,15 +1,30 @@
+url: 'https://harisfamilydentistry.com'
 baseurl: ''
-name: "Haris Family Dentistry" 
-title: "Haris Family Dentistry"
+name: Haris Family Dentistry
+title: Haris Family Dentistry
+description: Family dental care, smile design and facial aesthetics with Dr. Haris and Dr. Sufia in Dhanmondi, Dhaka.
 permalink: /:title/
 collections:
   knowledge:
     output: true
     permalink: /:collection/:title/
-    published: true
-    page: knowledge
   treatments:
     output: true
     permalink: /:collection/:title/
-    published: true
-    page: treatments
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - package.json
+  - package-lock.json
+  - webpack.mix.js
+  - node_modules
+  - scripts
+  - docs
+  - hfd_phtoshop
+  - rough
+  - backup.scss
+  - jekyll101.md
+  - test.html
+  - snippet.md
+  - vendor

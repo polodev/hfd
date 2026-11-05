@@ -1,0 +1,12 @@
+---
+layout: default
+page: training
+title: Workshops & professional training
+description: Dental and aesthetic workshop information, course posters and hands-on learning photographs with Dr. Haris and Dr. Sufia.
+---
+{% include page-intro.html eyebrow="Learn with our doctors" title="Knowledge shared. Skills practised." text="Explore dental and facial aesthetic training with Dr. Haris and Dr. Sufia, through course information and photographs of hands-on learning at the clinic." %}
+<section class="wrap training-intro"><div class="service-card"><p class="eyebrow">With Dr. Haris</p><h2>Restorative & aesthetic dentistry</h2><p>Smile design, composite restorations, Bioclear matrices, injection molding, crown and bridge preparation, and practical dental demonstrations.</p><a class="text-link" href="tel:+8801712157578">Dental course enquiries: 01712-157578 ↗</a></div><div class="service-card"><p class="eyebrow">With Dr. Sufia</p><h2>Facial aesthetics & permanent makeup</h2><p>Microblading, micropigmentation, permanent makeup, facial treatments, aesthetic techniques and hands-on mentoring.</p><a class="text-link" href="tel:+8801915697841">Aesthetic course enquiries: 01915-697841 ↗</a></div></section>
+<section class="wrap section"><div class="notice"><strong>Planning to join a course?</strong> The posters below are an archive of supplied announcements. Dates, fees, seats, eligibility and course content must be confirmed with the clinic. They are not a live booking calendar.</div><div class="section-heading"><div><p class="eyebrow">Course archive</p><h2>Workshop announcements.</h2></div></div><div class="gallery-grid">{% assign ids = 'b12,b10,b07,b02,b04,b03,b01,b05,b06' | split: ',' %}{% for ident in ids %}{% assign photo = site.data.gallery | where: 'id', ident | first %}{% include gallery-card.html photo=photo %}{% endfor %}</div></section>
+<section class="soft-section"><div class="section wrap"><div class="section-heading"><div><p class="eyebrow">Inside the sessions</p><h2>Learning, together.</h2></div><a class="text-link" href="{{ '/gallery/' | relative_url }}?category=training">All training photos →</a></div><div class="gallery-grid">{% assign ids = 'b09,b11,b14,b16,b15,b19' | split: ',' %}{% for ident in ids %}{% assign photo = site.data.gallery | where: 'id', ident | first %}{% include gallery-card.html photo=photo %}{% endfor %}</div></div></section>
+{% include appointment-banner.html %}
+{% include gallery-viewer.html %}

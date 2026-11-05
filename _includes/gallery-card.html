@@ -1,0 +1,8 @@
+{% assign photo = include.photo %}
+<article class="gallery-card" data-category="{{ photo.category }}" data-search="{{ photo.title | append: ' ' | append: photo.description | append: ' ' | append: photo.category_label | downcase | escape }}" id="{{ photo.slug }}">
+  <a class="gallery-open" href="{{ photo.image | relative_url }}" data-gallery-id="{{ photo.id }}" aria-label="View {{ photo.title | escape }}">
+    <span class="gallery-picture" style="--photo-ratio: {{ photo.width | times: 1.0 | divided_by: photo.visible_height }}"><span class="poster-viewport" style="--ratio: {{ photo.width }} / {{ photo.visible_height }}; --offset: {{ photo.offset }}%"><img src="{{ photo.thumbnail | relative_url }}" alt="{{ photo.title | escape }} — {{ photo.category_label }}" width="{{ photo.width }}" height="{{ photo.height }}" loading="lazy" decoding="async"></span><span class="view-photo" aria-hidden="true">View image ↗</span></span>
+    <span class="gallery-caption"><span class="eyebrow">{{ photo.category_label }}</span><h3>{{ photo.title }}</h3></span>
+  </a>
+  <p class="gallery-description">{{ photo.description }}</p>
+</article>

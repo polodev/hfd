@@ -1,0 +1,14 @@
+---
+layout: default
+page: gallery
+title: Photo gallery
+description: Explore dental and aesthetic treatment posters, meet our doctors and see workshop photographs from Haris Family Dentistry.
+---
+{% include page-intro.html eyebrow="A closer look at Haris" title="Our gallery." text="Explore our treatments, meet the doctors and step inside our hands-on training sessions. Open any image to see the detail and read its information." %}
+<section class="wrap section gallery-section" data-gallery>
+  <div class="gallery-tools"><div class="filter-buttons" role="group" aria-label="Filter gallery"><button type="button" data-filter="all" aria-pressed="true">All photos <span>51</span></button><button type="button" data-filter="dental" aria-pressed="false">Dental care</button><button type="button" data-filter="aesthetics" aria-pressed="false">Facial aesthetics</button><button type="button" data-filter="doctors" aria-pressed="false">Our doctors</button><button type="button" data-filter="training" aria-pressed="false">Workshops & training</button><button type="button" data-filter="practice" aria-pressed="false">Our practice</button></div><label class="gallery-search">Search the gallery<input type="search" id="gallery-search" placeholder="Try crowns, PRP or microblading…" autocomplete="off"></label></div>
+  <div class="gallery-status"><p id="gallery-count" role="status" aria-live="polite">Showing all 51 photos</p><p>Posters may show past offers or older contact details. <a href="{{ '/contact-and-location/' | relative_url }}">Contact the clinic for current information.</a></p></div>
+  <div class="gallery-grid">{% for photo in site.data.gallery %}{% include gallery-card.html photo=photo %}{% endfor %}</div>
+  <div class="empty-state" id="gallery-empty" hidden><h2>No matching photos</h2><p>Try a different search or browse all categories.</p><button type="button" class="button" id="gallery-reset">Show all photos</button></div>
+</section>
+{% include gallery-viewer.html %}

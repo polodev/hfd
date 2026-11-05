@@ -1,22 +1,15 @@
 {
-  "name": "hfd_jekyll",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "haris-family-dentistry",
+  "version": "2.0.0",
+  "private": true,
+  "description": "The Haris Family Dentistry and Cosmetic Center GitHub Pages website",
   "scripts": {
-    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
-  "keywords": [],
-  "author": "Polo Dev",
-  "license": "ISC",
-  "devDependencies": {
-    "laravel-mix": "^2.1.11"
+    "dev": "sh scripts/jekyll.sh serve --host 127.0.0.1 --port 4000",
+    "start": "npm run dev",
+    "build": "sh scripts/jekyll.sh build",
+    "check": "python3 scripts/check-site.py"
   },
   "dependencies": {
-    "vue": "^2.5.16",
-    "vuex": "^3.0.1"
+    "flatpickr": "4.6.13"
   }
 }
