@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /sitemap.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+{%- assign sitemap_origin = site.production_url | default: site.url -%}
+{%- assign sitemap_items = site.pages | concat: site.documents | sort: 'url' -%}
+{%- for item in sitemap_items -%}
+{%- if item.layout and item.sitemap != false and item.noindex != true %}
+  <url>
+    <loc>{{ sitemap_origin }}{{ item.url | relative_url | xml_escape }}</loc>{% if item.last_modified_at %}
+    <lastmod>{{ item.last_modified_at | date_to_xmlschema }}</lastmod>{% endif %}{% if item.page == 'gallery' %}{% for photo in site.data.gallery %}
+    <image:image><image:loc>{{ sitemap_origin }}{{ photo.image | relative_url | xml_escape }}</image:loc></image:image>{% endfor %}{% endif %}
+  </url>
+{%- endif -%}
+{%- endfor %}
+</urlset>

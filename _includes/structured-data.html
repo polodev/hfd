@@ -1,0 +1,76 @@
+{%- assign entity_root = seo_origin | append: site.baseurl | append: '/' -%}
+{%- assign clinic_id = entity_root | append: '#clinic' -%}
+{%- assign website_id = entity_root | append: '#website' -%}
+{%- assign logo_url = seo_origin | append: site.baseurl | append: site.logo -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Dentist",
+      "@id": {{ clinic_id | jsonify }},
+      "name": {{ site.data.clinic.name | jsonify }},
+      "url": {{ entity_root | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "telephone": "+8801787667977",
+      "email": {{ site.data.clinic.email | jsonify }},
+      "logo": {"@type": "ImageObject", "url": {{ logo_url | jsonify }}, "width": 1125, "height": 844},
+      "image": {{ logo_url | jsonify }},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": {{ site.data.clinic.street_address | jsonify }},
+        "addressLocality": {{ site.data.clinic.address_locality | jsonify }},
+        "addressRegion": {{ site.data.clinic.address_region | jsonify }},
+        "addressCountry": {{ site.data.clinic.address_country | jsonify }}
+      },
+      "sameAs": [{{ site.data.clinic.facebook | jsonify }}],
+      "hasMap": {{ site.data.clinic.maps | jsonify }},
+      "contactPoint": {"@type": "ContactPoint", "telephone": "+8801787667977", "contactType": "appointments"}
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ website_id | jsonify }},
+      "url": {{ entity_root | jsonify }},
+      "name": {{ site.data.clinic.name | jsonify }},
+      "alternateName": "Haris Family Dentistry",
+      "inLanguage": {{ site.lang | jsonify }},
+      "publisher": {"@id": {{ clinic_id | jsonify }}}
+    },
+    {
+      "@type": "{% if page.page == 'location' %}ContactPage{% elsif page.page == 'about' %}AboutPage{% elsif page.page == 'gallery' or page.page == 'training' %}CollectionPage{% else %}WebPage{% endif %}",
+      "@id": {{ seo_canonical | append: '#webpage' | jsonify }},
+      "url": {{ seo_canonical | jsonify }},
+      "name": {{ seo_title | jsonify }},
+      "description": {{ seo_description | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "isPartOf": {"@id": {{ website_id | jsonify }}},
+      "about": {"@id": {{ clinic_id | jsonify }}}{% unless page.page == 'home' %},
+      "breadcrumb": {"@id": {{ seo_canonical | append: '#breadcrumb' | jsonify }}}{% endunless %}
+    }{% for doctor in site.data.doctors %},
+    {
+      "@type": "Person",
+      "@id": {{ entity_root | append: 'dentists/#' | append: doctor.id | jsonify }},
+      "url": {{ entity_root | append: 'dentists/#' | append: doctor.id | jsonify }},
+      "name": {{ doctor.name | jsonify }},
+      "jobTitle": {{ doctor.role | jsonify }},
+      "description": {{ doctor.biography | jsonify }},
+      "image": {{ seo_origin | append: site.baseurl | append: doctor.image | jsonify }},
+      "worksFor": {"@id": {{ clinic_id | jsonify }}},
+      "knowsAbout": {{ doctor.interests | jsonify }},
+      "sameAs": [{{ site.data.clinic[doctor.facebook_key] | jsonify }}]
+    }{% endfor %}{% unless page.page == 'home' %},
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ seo_canonical | append: '#breadcrumb' | jsonify }},
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": {{ entity_root | jsonify }}},
+        {% if page.collection == 'treatments' %}{"@type": "ListItem", "position": 2, "name": "Dental care", "item": {{ entity_root | append: 'dental_treatments/' | jsonify }}},
+        {"@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ seo_canonical | jsonify }}}
+{% elsif page.collection == 'knowledge' %}{"@type": "ListItem", "position": 2, "name": "Dental knowledge", "item": {{ entity_root | append: 'dental_knowledge/' | jsonify }}},
+        {"@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ seo_canonical | jsonify }}}
+{% else %}{"@type": "ListItem", "position": 2, "name": {{ page.title | jsonify }}, "item": {{ seo_canonical | jsonify }}}{% endif %}
+      ]
+    }{% endunless %}
+  ]
+}
+</script>

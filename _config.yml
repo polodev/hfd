@@ -1,5 +1,9 @@
 url: 'https://harisfamilydentistry.com'
+production_url: 'https://harisfamilydentistry.com'
 baseurl: ''
+lang: en-BD
+logo: /assets/images/icons/logo_home.png
+social_image: /assets/images/icons/logo_home.png
 name: Haris Family Dentistry
 title: Haris Family Dentistry
 description: Family dental care, smile design and facial aesthetics with Dr. Haris and Dr. Sufia in Dhanmondi, Dhaka.

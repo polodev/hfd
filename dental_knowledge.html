@@ -2,6 +2,7 @@
 layout: default
 page: knowledge
 title: Dental knowledge
+description: "Browse dental questions and answers on family dentistry, oral hygiene, implants, braces and preventive care from Haris Family Dentistry."
 ---
 {% include page-intro.html eyebrow="Understand your dental care" title="A little knowledge. A healthier smile." text="Browse the clinic's dental information library, then discuss your own questions and concerns with your dentist." %}
 <section class="section wrap"><div class="service-grid">{% assign topics = site.knowledge | sort: 'number' %}{% for topic in topics %}<a class="service-card knowledge-card" href="{{ topic.url | relative_url }}"><img src="{{ topic.image | relative_url }}" alt="{{ topic.title }}" loading="lazy"><h2>{{ topic.title }}</h2><span class="text-link">Read the questions & answers →</span></a>{% endfor %}</div></section>

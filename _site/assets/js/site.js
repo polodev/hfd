@@ -143,6 +143,26 @@
     if (typeof ResizeObserver !== 'undefined') new ResizeObserver(fitImage).observe(stage);
   }
 
+  const clinicMap = document.querySelector('[data-clinic-map]');
+  if (clinicMap) {
+    const frame = clinicMap.querySelector('iframe');
+    const initialUrl = frame.src;
+    const initialZoom = Number(clinicMap.dataset.defaultZoom);
+    let mapZoom = initialZoom;
+    const buttons = Array.from(clinicMap.querySelectorAll('[data-map-zoom]'));
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const action = button.dataset.mapZoom;
+      mapZoom = action === 'reset' ? initialZoom : Math.min(20, Math.max(12, mapZoom + (action === 'in' ? 1 : -1)));
+      const next = new URL(initialUrl);
+      next.searchParams.set('z', String(mapZoom));
+      frame.src = next.href;
+      document.getElementById('map-zoom-status').textContent = mapZoom >= 17 ? 'Street-level view' : mapZoom >= 15 ? 'Neighbourhood view' : 'Area view';
+      buttons.forEach(control => {
+        control.disabled = (control.dataset.mapZoom === 'in' && mapZoom === 20) || (control.dataset.mapZoom === 'out' && mapZoom === 12);
+      });
+    }));
+  }
+
   const form = document.getElementById('appointment-form');
   if (form) {
     const doctor = params.get('doctor');

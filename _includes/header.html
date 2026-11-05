@@ -3,16 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }} | {{ site.title }}</title>
-  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  {% include seo.html %}
   <meta name="theme-color" content="#c94d5d">
   <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
-  <link rel="canonical" href="{{ page.url | absolute_url }}">
-  <meta property="og:title" content="{{ page.title | escape }} | {{ site.title }}">
-  <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta property="og:image" content="{{ '/assets/images/icons/logo_home.png' | absolute_url }}">
+  <link rel="preload" href="{{ '/assets/css/fonts/NuevaStd.ttf' | relative_url }}" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="{{ '/assets/css/fonts/NuevaStd-Bold.otf' | relative_url }}" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/bootstrap/bootstrap.min.css' | relative_url }}">
 {% if page.page == 'appointment' %}
   <link rel="stylesheet" href="{{ '/assets/vendor/flatpickr/flatpickr.min.css' | relative_url }}">

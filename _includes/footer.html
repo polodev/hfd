@@ -5,7 +5,7 @@
     <div><h2>Let’s talk</h2><a href="tel:+8801787667977">{{ site.data.clinic.phone_display }}</a><a href="tel:+8801787667971">{{ site.data.clinic.secondary_display }}</a><a class="footer-whatsapp" href="{{ site.data.clinic.whatsapp }}" target="_blank" rel="noopener noreferrer">{% include whatsapp-icon.html %}<span>WhatsApp us<span>{{ site.data.clinic.phone_display }} ↗</span></span></a><a href="mailto:{{ site.data.clinic.email }}">{{ site.data.clinic.email }}</a><a href="{{ site.data.clinic.facebook }}" target="_blank" rel="noopener noreferrer">Clinic on Facebook ↗</a></div>
     <div><h2>Explore</h2><a href="{{ '/dentists/' | relative_url }}">Meet our doctors</a><a href="{{ '/gallery/' | relative_url }}">Photo gallery</a><a href="{{ '/dental_knowledge/' | relative_url }}">Dental knowledge</a><a href="{{ '/about/' | relative_url }}">About the clinic</a><a href="{{ '/training/' | relative_url }}">Professional training</a></div>
   </div>
-  <div class="wrap footer-bottom"><span>© {{ 'now' | date: '%Y' }} Haris Family Dentistry and Cosmetic Center</span><span>Smile again!</span></div>
+  <div class="wrap footer-bottom"><span>© {{ 'now' | date: '%Y' }} Haris Family Dentistry and Cosmetic Center</span><span><a href="{{ '/sitemap.xml' | relative_url }}">Sitemap</a> <span aria-hidden="true">·</span> Smile again!</span></div>
 </footer>
 <div class="mobile-actions"><a href="tel:+8801787667977">Call clinic</a><a href="{{ site.data.clinic.whatsapp }}" target="_blank" rel="noopener noreferrer">{% include whatsapp-icon.html %} WhatsApp</a><a href="{{ '/appointment/' | relative_url }}">Appointment ↗</a></div>
 </body>

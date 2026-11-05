@@ -46,3 +46,14 @@ All 14 treatment and 7 knowledge URLs are preserved. Old evaluation URLs now
 provide preparation guidance and a consultation link, replacing the abandoned
 Vue self-diagnosis component. The knowledge library's original text is retained,
 with accessible accordion controls powered by the shared small JavaScript file.
+
+## Map and search metadata follow-up
+
+The owner supplied https://maps.app.goo.gl/wFVCyCpUYCQg6LfL8 as the clinic's map.
+It resolves to the clinic listing (same name, website and phone), CID
+1071174415416802928. Its current point is south of Dhanmondi, while the website's
+written address remains Dhanmondi. All map links now use the supplied listing.
+The embedded listing opens at street-level zoom 17 and has visible zoom/reset
+controls. No unconfirmed geographic coordinates, opening hours or Google ratings
+have been added to the search metadata. The owner needs to reconcile the Google
+Business Profile pin with the clinic address.
