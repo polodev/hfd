@@ -82,8 +82,9 @@ for path, parser in pages.items():
             errors.append(f'{path.relative_to(SITE)}: missing anchor {value}')
 
 photos = json.loads((ROOT / '_data/gallery.json').read_text())
-if len(photos) != 51 or len({p['slug'] for p in photos}) != 51:
-    errors.append('Gallery must contain 51 uniquely named images')
+original_batch_photos = [photo for photo in photos if photo['source_batch'] in {'batch-a', 'batch-b'}]
+if len(original_batch_photos) != 51 or len({p['slug'] for p in photos}) != len(photos):
+    errors.append('Gallery must retain the 51 original batch images and unique names for all artwork')
 for photo in photos:
     source = ROOT / photo['image'].lstrip('/')
     if hashlib.sha256(source.read_bytes()).hexdigest() != photo['sha256']:
@@ -153,7 +154,7 @@ try:
     listed_images = [node.text for node in sitemap.findall('.//image:loc', ns)]
     expected_images = {public_root + photo['image'] for photo in photos}
     if len(listed_images) != len(expected_images) or set(listed_images) != expected_images:
-        errors.append('Image sitemap does not cover all 51 gallery originals')
+        errors.append('Image sitemap does not cover every gallery original')
     if any(urlsplit(url).query or urlsplit(url).fragment for url in listed):
         errors.append('Sitemap must contain canonical paths without search parameters or fragments')
 except (OSError, ET.ParseError) as e:
@@ -173,4 +174,4 @@ except OSError as e:
 if errors:
     print('\n'.join(errors))
     sys.exit(1)
-print(f'Passed: {len(pages)} pages, internal links/anchors, CSS assets, 51 originals, {len(indexable_urls)} sitemap URLs, image sitemap, robots.txt, unique metadata, canonicals and JSON-LD.')
+print(f'Passed: {len(pages)} pages, internal links/anchors, CSS assets, {len(photos)} originals, {len(indexable_urls)} sitemap URLs, image sitemap, robots.txt, unique metadata, canonicals and JSON-LD.')

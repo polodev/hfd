@@ -2,9 +2,31 @@
 layout: default
 page: dentists
 title: Meet our doctors
-description: Meet Dr. Haris Muhammad Wali-ur-Rahman and Dr. Sufia Rahaman Brishty, providing dental and aesthetic care in Dhanmondi.
+description: Meet Dr. Haris, Associate Professor and Head of Dental Pharmacology, and Dr. Sufia, dentist and facial aesthetician, at Haris in Dhanmondi.
 ---
 {% include page-intro.html eyebrow="The people behind your care" title="Two doctors. A personal approach." text="Get to know the dentists at Haris Family Dentistry and Cosmetic Center, and the interests each brings to your care." %}
-<div class="wrap doctor-profiles">{% for doctor in site.data.doctors %}<article class="doctor-profile" id="{{ doctor.id }}"><div class="profile-visual"><div class="doctor-photo doctor-photo--{{ doctor.id }}"><img src="{{ doctor.image | relative_url }}" alt="{{ doctor.name }}" loading="lazy"></div><a class="text-link" href="{{ doctor.image | relative_url }}" data-gallery-id="{{ doctor.profile_id }}">View full profile poster ↗</a></div><div class="profile-copy"><p class="eyebrow">{{ doctor.role }}</p><h2>{{ doctor.name }}</h2><p class="qualification">{{ doctor.qualifications }}</p><p class="registration">BMDC registration: {{ doctor.registration }}</p><p>{{ doctor.biography }}</p><h3>Areas of interest</h3><ul class="tidy-list">{% for interest in doctor.interests %}<li>{{ interest }}</li>{% endfor %}</ul><div class="button-row"><a class="button" href="{{ '/appointment/' | relative_url }}?doctor={{ doctor.id }}">Appointment with {{ doctor.short_name }} ↗</a><a class="text-link" href="{{ site.data.clinic[doctor.facebook_key] }}" target="_blank" rel="noopener noreferrer">Facebook ↗</a></div></div></article>{% endfor %}</div>
+<div class="wrap doctor-profiles">
+{% for doctor in site.data.doctors %}
+  <article class="doctor-profile" id="{{ doctor.id }}">
+    <div class="profile-visual">
+      <div class="doctor-photo doctor-photo--{{ doctor.id }}"><img src="{{ doctor.image | relative_url }}" alt="{{ doctor.name }}" loading="lazy"></div>
+      <a class="text-link" href="{{ doctor.poster | relative_url }}" data-gallery-id="{{ doctor.profile_id }}">View updated profile poster ↗</a>
+    </div>
+    <div class="profile-copy">
+      <p class="eyebrow">{{ doctor.role }}</p>
+      <h2>{{ doctor.name }}</h2>
+      <p class="qualification">{{ doctor.qualifications }}</p>
+{% if doctor.department %}<p class="doctor-affiliation"><strong>{{ doctor.department }}</strong><span>{{ doctor.institution }}</span></p>{% endif %}
+{% if doctor.clinic_role %}<p class="doctor-clinic-role"><strong>{{ doctor.clinic_role }}</strong><span>{{ site.data.clinic.name }}</span></p>{% endif %}
+      <p class="registration">BMDC registration: {{ doctor.registration }}</p>
+{% include doctor-credentials.html doctor=doctor %}
+      <p>{{ doctor.biography }}</p>
+      <h3>Areas of interest</h3>
+      <ul class="tidy-list">{% for interest in doctor.interests %}<li>{{ interest }}</li>{% endfor %}</ul>
+      <div class="button-row"><a class="button" href="{{ '/appointment/' | relative_url }}?doctor={{ doctor.id }}">Appointment with {{ doctor.short_name }} ↗</a><a class="text-link" href="{{ site.data.clinic[doctor.facebook_key] }}" target="_blank" rel="noopener noreferrer">Facebook ↗</a></div>
+    </div>
+  </article>
+{% endfor %}
+</div>
 {% include appointment-banner.html %}
 {% include gallery-viewer.html %}

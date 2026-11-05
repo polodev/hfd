@@ -1,30 +1,53 @@
 - id: haris
   name: Dr. Haris Muhammad Wali-ur-Rahman
   short_name: Dr. Haris
-  role: Chief Consultant & Mentor
+  role: Associate Professor & Head
+  department: Department of Dental Pharmacology
+  institution: Bangladesh Dental College
+  clinic_role: Chief Consultant & Mentor
   focus: Restorative dentistry & smile design
   qualifications: BDS (CU), DDS (BSMMU)
   registration: '2094'
   image: /assets/images/gallery/doctors/dr-haris-muhammad-wali-ur-rahman-profile.jpeg
-  profile_id: a29
+  poster: /assets/images/gallery/doctors/dr-haris-muhammad-wali-ur-rahman-updated-profile.png
+  profile_id: p01
   facebook_key: haris_facebook
-  biography: A graduate of Chittagong University with postgraduate DDS training from BSMMU, Dr. Haris works in restorative and cosmetic dentistry. His current clinic profile lists him as Associate Professor and Head of the Department of Dental Pharmacology at Bangladesh Dental College, and Chief Consultant and Mentor at Haris Family Dentistry and Cosmetic Center.
+  biography: A graduate of Chittagong University with postgraduate DDS training from BSMMU, Dr. Haris focuses on smile design and aesthetic restoration. He also provides clinical training in the Bioclear Method and injection molding techniques.
+  credentials:
+    - title: BDS (CU)
+      advanced: false
+    - title: DDS (BSMMU)
+      advanced: false
   interests:
-    - Smile design and aesthetic composite restorations
+    - Smile design and aesthetic restorations
     - Root canal treatment and restorative dental care
     - Crowns, bridges and dental implants
     - Bioclear Method and injection molding training
 - id: sufia
   name: Dr. Sufia Rahaman Brishty
   short_name: Dr. Sufia
-  role: Consulting Dental Surgeon & Facial Aesthetician
+  role: Consultant & Facial Aesthetician
   focus: Dentistry, facial aesthetics & permanent makeup
   qualifications: BDS (DU), PGDAC (India)
   registration: '5508'
   image: /assets/images/gallery/doctors/dr-sufia-rahaman-brishty-profile.jpeg
-  profile_id: a31
+  poster: /assets/images/gallery/doctors/dr-sufia-rahaman-brishty-updated-profile.png
+  profile_id: p02
   facebook_key: sufia_facebook
-  biography: A Dhaka University graduate from City Dental College, Dr. Sufia combines dental care with facial aesthetics and permanent makeup. Her supplied profile lists a Fellowship in Facial Aesthetic and Aesthetic Medicine and Masters in Micropigmentation in Phoenix, Arizona, USA, together with training in fixed orthodontics and braces.
+  biography: A Dhaka University graduate from City Dental College, Dr. Sufia combines dental care with facial aesthetics, micropigmentation and permanent makeup.
+  credentials:
+    - title: BDS (DU)
+      advanced: false
+    - title: PGDAC (India)
+      advanced: false
+    - title: Fellowship in Facial Aesthetic and Aesthetic Medicine
+      location: Phoenix, AZ, USA
+      advanced: true
+    - title: Masters in Micropigmentation
+      location: Phoenix, AZ, USA
+      advanced: true
+    - title: Training in fixed orthodontics and braces system
+      advanced: true
   interests:
     - Dental care, cosmetic dentistry and fixed orthodontics
     - Facial aesthetics and skin rejuvenation consultations

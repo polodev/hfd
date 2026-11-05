@@ -77,6 +77,9 @@ def main():
     sources = {f"{batch}{i:02}": p for batch, folder in batches.items() for i, p in enumerate(sorted(folder.glob("*.jpeg")), 1)}
     if set(sources) != {r[0] for r in RECORDS}:
         raise SystemExit("Unexpected photo inventory; check the two supplied batches.")
+    manifest = ROOT / "_data/gallery.json"
+    # Preserve later doctor-provided artwork when re-importing the original batches.
+    extra_photos = [photo for photo in json.loads(manifest.read_text()) if photo["source_batch"] not in {"batch-a", "batch-b"}] if manifest.exists() else []
     gallery = []
     for ident, category, slug, title, description in RECORDS:
         source = sources[ident]
@@ -102,7 +105,8 @@ def main():
             visible_height=bottom-top, offset=round(-100*top/(bottom-top), 5), source_batch="batch-"+ident[0], source_filename=source.name,
             sha256=hashlib.sha256(source.read_bytes()).hexdigest()))
     (ROOT / "_data").mkdir(exist_ok=True)
-    (ROOT / "_data/gallery.json").write_text(json.dumps(gallery, ensure_ascii=False, indent=2) + "\n")
+    gallery.extend(extra_photos)
+    manifest.write_text(json.dumps(gallery, ensure_ascii=False, indent=2) + "\n")
     print(f"Imported {len(gallery)} originals and generated gallery previews.")
 
 if __name__ == "__main__":

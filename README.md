@@ -29,7 +29,7 @@ the source. GitHub Pages itself builds the source from `master`.
 
 - `_data/clinic.yml`: address, phone numbers and Facebook links.
 - `_data/doctors.yml`: doctor profiles.
-- `_data/gallery.json`: all 51 supplied images, captions, categories and provenance.
+- `_data/gallery.json`: all supplied images, captions, categories and provenance, including updated doctor posters.
 - `_treatments/`: dental information, retaining the original URLs.
 - `assets/css/site.css` and `assets/js/site.js`: shared styling and interactions.
 - `docs/content-notes.md`: editorial decisions and supplied-image references.
@@ -72,7 +72,7 @@ The public domain is also stored as `production_url`, so local preview builds
 cannot accidentally publish localhost canonical or sitemap URLs.
 
 - `/sitemap.xml` is generated from indexable pages and both collections. Its
-  gallery entry includes all 51 original images. New content is included on build.
+  gallery entry includes every original image, including later doctor-profile updates. New content is included on build.
 - `/robots.txt` allows crawling and points to the public sitemap.
 - Each indexable page has a unique title/description, an HTTPS canonical,
   Open Graph/Twitter metadata and schema.org JSON-LD.
@@ -101,3 +101,9 @@ Implementation references: [Google sitemap guidance](https://developers.google.c
 [local-business structured data](https://developers.google.com/search/docs/appearance/structured-data/local-business),
 [title guidance](https://developers.google.com/search/docs/appearance/title-link) and
 [description guidance](https://developers.google.com/search/docs/appearance/snippet).
+
+Updated doctor designations, degrees and advanced training are maintained in
+`_data/doctors.yml`. The two later doctor-supplied posters are preserved alongside
+the 51 original batch images, giving 53 gallery entries. Re-importing the original
+batches preserves later profile-update records. Portraits and full profile
+posters have separate fields so the approved portrait framing remains consistent.

@@ -57,3 +57,21 @@ The embedded listing opens at street-level zoom 17 and has visible zoom/reset
 controls. No unconfirmed geographic coordinates, opening hours or Google ratings
 have been added to the search metadata. The owner needs to reconcile the Google
 Business Profile pin with the clinic address.
+
+## Doctor-requested profile updates
+
+Two later posters supplied by the doctors are preserved as p01/p02 in the gallery.
+Dr. Haris's main designation now prominently states Associate Professor & Head,
+Department of Dental Pharmacology, Bangladesh Dental College, with Chief Consultant
+& Mentor at Haris Family Dentistry and Cosmetic Center shown separately.
+
+Dr. Sufia's title is Consultant & Facial Aesthetician. Her BDS (DU), PGDAC (India),
+Fellowship in Facial Aesthetic and Aesthetic Medicine (Phoenix, AZ, USA), Masters in
+Micropigmentation (Phoenix, AZ, USA), fixed orthodontic/braces training and BMDC
+5508 follow the supplied poster. Degrees and advanced training are described by
+the names in the artwork; no awarding institution or additional credential is
+invented. These details appear on the doctor page, home introductions, aesthetic
+page and Person structured data. Updated-poster links open the new artwork.
+
+The original 51 batch images remain unchanged; the two new originals bring the
+gallery and image sitemap to 53 images.

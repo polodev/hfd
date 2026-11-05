@@ -865,5 +865,39 @@
     "source_batch": "batch-b",
     "source_filename": "WhatsApp Image 2026-11-05 at 09.56.10.jpeg",
     "sha256": "d4093dbbcfcb26d165ea3836d75d0f9cc0c72264b0b05d652c2ea79df5556d3f"
+  },
+  {
+    "id": "p01",
+    "category": "doctors",
+    "category_label": "Our doctors",
+    "slug": "dr-haris-muhammad-wali-ur-rahman-updated-profile",
+    "title": "Dr. Haris — updated designation",
+    "description": "Doctor-provided profile: Associate Professor and Head, Department of Dental Pharmacology, Bangladesh Dental College. Chief Consultant and Mentor, Haris Family Dentistry and Cosmetic Center. Expertise in smile design and aesthetic restoration; Bioclear Method and injection molding trainer.",
+    "image": "/assets/images/gallery/doctors/dr-haris-muhammad-wali-ur-rahman-updated-profile.png",
+    "thumbnail": "/assets/images/gallery/doctors/dr-haris-muhammad-wali-ur-rahman-updated-profile-preview.webp",
+    "width": 1232,
+    "height": 1712,
+    "visible_height": 1712,
+    "offset": 0,
+    "source_batch": "doctor-profile-update",
+    "source_filename": "codex-clipboard-R2xArK.png",
+    "sha256": "a0af874a0afb8dcea63b9bb6558e44eab1fb619969e58b5b6661d7f132f6b13b"
+  },
+  {
+    "id": "p02",
+    "category": "doctors",
+    "category_label": "Our doctors",
+    "slug": "dr-sufia-rahaman-brishty-updated-profile",
+    "title": "Dr. Sufia — qualifications & training",
+    "description": "Doctor-provided profile: Consultant and Facial Aesthetician. BDS (DU), PGDAC (India). Fellowship in Facial Aesthetic and Aesthetic Medicine (Phoenix, AZ, USA); Masters in Micropigmentation (Phoenix, AZ, USA); trained in fixed orthodontics and braces system. BMDC registration 5508.",
+    "image": "/assets/images/gallery/doctors/dr-sufia-rahaman-brishty-updated-profile.png",
+    "thumbnail": "/assets/images/gallery/doctors/dr-sufia-rahaman-brishty-updated-profile-preview.webp",
+    "width": 1118,
+    "height": 1861,
+    "visible_height": 1861,
+    "offset": 0,
+    "source_batch": "doctor-profile-update",
+    "source_filename": "codex-clipboard-uB87UF.png",
+    "sha256": "1dbdf5b9173d44d6fe729f495edf443d3ed782031f50150bb194e897a7c1e8d4"
   }
 ]
